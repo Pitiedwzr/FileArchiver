@@ -23,6 +23,21 @@
   <ItemGroup>
     <Compile Include="FileArchiver.py" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="db\" />
+    <Folder Include="for_assessment\" />
+    <Folder Include="resource\" />
+    <Folder Include="resource\images\" />
+    <Folder Include="ui\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="for_assessment\Wireframe.png" />
+    <Content Include="README.md" />
+    <Content Include="ui\*" />
+    <Content Include="db\*" />
+    <Content Include="resource\*" />
+    <Content Include="resource\images\*" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
        Visual Studio and specify your pre- and post-build commands in

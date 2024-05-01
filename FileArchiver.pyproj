@@ -27,11 +27,13 @@
     <Folder Include="db\" />
     <Folder Include="for_assessment\" />
     <Folder Include="resource\" />
+    <Folder Include="misc\" />
     <Folder Include="resource\images\" />
     <Folder Include="ui\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="for_assessment\Wireframe.png" />
+    <Content Include="for_assessment\*" />
+	<Content Include="misc\*" />
     <Content Include="README.md" />
     <Content Include="ui\*" />
     <Content Include="db\*" />

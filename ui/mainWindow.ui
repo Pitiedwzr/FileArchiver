@@ -14,17 +14,17 @@
    <string>File Archiver</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLineEdit" name="lineEdit">
+   <widget class="QLineEdit" name="pendingPathEdit">
     <property name="geometry">
      <rect>
       <x>140</x>
       <y>50</y>
-      <width>571</width>
+      <width>591</width>
       <height>31</height>
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="pendingSelectButton">
     <property name="geometry">
      <rect>
       <x>730</x>
@@ -37,7 +37,7 @@
      <string>PushButton</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="pendingPathLabel">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -50,17 +50,17 @@
      <string>TextLabel</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_2">
+   <widget class="QLineEdit" name="processedPathEdit">
     <property name="geometry">
      <rect>
       <x>140</x>
       <y>120</y>
-      <width>571</width>
+      <width>591</width>
       <height>31</height>
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="processedSelectButton">
     <property name="geometry">
      <rect>
       <x>730</x>
@@ -73,7 +73,7 @@
      <string>PushButton</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="processedPathLabel">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -86,7 +86,7 @@
      <string>TextLabel</string>
     </property>
    </widget>
-   <widget class="QListWidget" name="listWidget">
+   <widget class="QListWidget" name="pendingFileList">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -96,7 +96,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QListWidget" name="listWidget_2">
+   <widget class="QListWidget" name="processedFileList">
     <property name="geometry">
      <rect>
       <x>500</x>
@@ -106,33 +106,33 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
+   <widget class="QLabel" name="pendingListLabel">
     <property name="geometry">
      <rect>
       <x>40</x>
       <y>250</y>
-      <width>54</width>
-      <height>16</height>
+      <width>80</width>
+      <height>20</height>
      </rect>
     </property>
     <property name="text">
      <string>TextLabel</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_4">
+   <widget class="QLabel" name="processedListLabel">
     <property name="geometry">
      <rect>
       <x>500</x>
       <y>250</y>
-      <width>54</width>
-      <height>16</height>
+      <width>80</width>
+      <height>20</height>
      </rect>
     </property>
     <property name="text">
      <string>TextLabel</string>
     </property>
    </widget>
-   <widget class="QComboBox" name="comboBox">
+   <widget class="QComboBox" name="ruleComboBox">
     <property name="geometry">
      <rect>
       <x>340</x>
@@ -142,7 +142,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="processButton">
     <property name="geometry">
      <rect>
       <x>340</x>
@@ -169,10 +169,41 @@
     <property name="title">
      <string>File</string>
     </property>
+    <addaction name="actionSave_snapshot"/>
+    <addaction name="actionLoad_snapshot"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionFile_Archiver_Help"/>
+    <addaction name="separator"/>
+    <addaction name="actionAbout"/>
    </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionFile_Archiver_Help">
+   <property name="text">
+    <string>File Archiver Help</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionSave_snapshot">
+   <property name="text">
+    <string>Save snapshot</string>
+   </property>
+  </action>
+  <action name="actionLoad_snapshot">
+   <property name="text">
+    <string>Load snapshot</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

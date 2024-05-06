@@ -34,7 +34,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>...</string>
     </property>
    </widget>
    <widget class="QLabel" name="pendingPathLabel">
@@ -42,12 +42,12 @@
      <rect>
       <x>40</x>
       <y>50</y>
-      <width>81</width>
+      <width>91</width>
       <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>Pending Path</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="processedPathEdit">
@@ -70,7 +70,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>...</string>
     </property>
    </widget>
    <widget class="QLabel" name="processedPathLabel">
@@ -78,12 +78,12 @@
      <rect>
       <x>40</x>
       <y>120</y>
-      <width>81</width>
+      <width>91</width>
       <height>31</height>
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>Processed Path</string>
     </property>
    </widget>
    <widget class="QListWidget" name="pendingFileList">
@@ -116,7 +116,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>Pending Files</string>
     </property>
    </widget>
    <widget class="QLabel" name="processedListLabel">
@@ -124,12 +124,12 @@
      <rect>
       <x>500</x>
       <y>250</y>
-      <width>80</width>
+      <width>91</width>
       <height>20</height>
      </rect>
     </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>Processed Files</string>
     </property>
    </widget>
    <widget class="QComboBox" name="ruleComboBox">
@@ -152,7 +152,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Process</string>
     </property>
    </widget>
   </widget>
@@ -180,7 +180,14 @@
     <addaction name="separator"/>
     <addaction name="actionAbout"/>
    </widget>
+   <widget class="QMenu" name="menuSettings">
+    <property name="title">
+     <string>Settings</string>
+    </property>
+    <addaction name="actionLanguage"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuSettings"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -202,6 +209,11 @@
   <action name="actionLoad_snapshot">
    <property name="text">
     <string>Load snapshot</string>
+   </property>
+  </action>
+  <action name="actionLanguage">
+   <property name="text">
+    <string>Language</string>
    </property>
   </action>
  </widget>

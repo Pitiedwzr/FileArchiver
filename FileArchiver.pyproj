@@ -23,7 +23,6 @@
   <ItemGroup>
     <Compile Include="account_handling.py" />
     <Compile Include="FileArchiver.py" />
-    <Compile Include="UI_mainWindow.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="db\" />

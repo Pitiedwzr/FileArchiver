@@ -7,7 +7,6 @@
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
-
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
     QSize, QTime, QUrl, Qt)
@@ -110,10 +109,9 @@ class Ui_Dialog(object):
     # setupUi
 
     def retranslateUi(self, Dialog):
-        Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Dialog", None))
-        self.usernameLabel.setText(QCoreApplication.translate("Dialog", u"Username", None))
-        self.passwordLabel.setText(QCoreApplication.translate("Dialog", u"Password", None))
-        self.signUpButton.setText(QCoreApplication.translate("Dialog", u"Sign Up", None))
-        self.signInButton.setText(QCoreApplication.translate("Dialog", u"Sign In", None))
+        Dialog.setWindowTitle(QCoreApplication.translate("Dialog", "Dialog", None))
+        self.usernameLabel.setText(QCoreApplication.translate("Dialog", "Username", None))
+        self.passwordLabel.setText(QCoreApplication.translate("Dialog", "Password", None))
+        self.signUpButton.setText(QCoreApplication.translate("Dialog", "Sign Up", None))
+        self.signInButton.setText(QCoreApplication.translate("Dialog", "Sign In", None))
     # retranslateUi
-

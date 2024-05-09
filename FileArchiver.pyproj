@@ -36,6 +36,7 @@
     <Content Include="for_assessment\*" />
     <Content Include="misc\*" />
     <Content Include="README.md" />
+    <Content Include="requirements.txt" />
     <Content Include="ui\*" />
     <Content Include="db\*" />
     <Content Include="resource\*" />

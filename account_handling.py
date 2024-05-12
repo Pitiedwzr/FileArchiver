@@ -1,5 +1,6 @@
 import sqlite3 as sql
-
+import os
+import hashlib
 con = sql.connect("db/users.db")
 cur = con.cursor()
 
@@ -13,3 +14,15 @@ def check():
     else:
         print("Welcome")
 
+def add():
+    username = "admin"
+    password = "12345"
+    salt = os.urandom(32).hex()
+    byte_password = (password+salt).encode()
+    hash_password = hashlib.sha256(byte_password).hexdigest()
+
+    statement = f"INSERT INTO users VALUES ('{username}','{hash_password}','{salt}');"
+    print(statement)
+    cur.execute(statement)
+    con.commit()
+add()

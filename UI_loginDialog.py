@@ -109,7 +109,7 @@ class Ui_Dialog(object):
     # setupUi
 
     def retranslateUi(self, Dialog):
-        Dialog.setWindowTitle(QCoreApplication.translate("Dialog", "Dialog", None))
+        Dialog.setWindowTitle(QCoreApplication.translate("Dialog", "Login", None))
         self.usernameLabel.setText(QCoreApplication.translate("Dialog", "Username", None))
         self.passwordLabel.setText(QCoreApplication.translate("Dialog", "Password", None))
         self.signUpButton.setText(QCoreApplication.translate("Dialog", "Sign Up", None))

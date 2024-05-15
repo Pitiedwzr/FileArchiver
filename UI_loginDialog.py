@@ -67,6 +67,7 @@ class Ui_Dialog(object):
 
         self.passwordLineEdit = QLineEdit(Dialog)
         self.passwordLineEdit.setObjectName(u"passwordLineEdit")
+        self.passwordLineEdit.setEchoMode(QLineEdit.Password)
 
         self.verticalLayout.addWidget(self.passwordLineEdit)
 

@@ -28,11 +28,7 @@ def check(username,password):
 
     return correct
 
-def add():
-    # Will connect to slots of the sign up UI
-    username = "admin_1"
-    password = "54321"
-
+def add(username,password):
     # Encrypt password with salt
     salt = os.urandom(32).hex()
     byte_password = (password+salt).encode()

@@ -11,7 +11,7 @@ def check(username,password):
     statement = f"SELECT salt from users WHERE username='{username}';"
     cur.execute(statement)
     salt = cur.fetchone()
-    salt = salt[0] # Convert tuple to str
+    salt = salt[0] # Convert list to str
 
     # Encrypt the given password with salt
     byte_password = (password+salt).encode()

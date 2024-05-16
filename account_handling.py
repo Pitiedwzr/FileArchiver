@@ -1,4 +1,3 @@
-from math import exp
 import sqlite3 as sql
 import os
 import hashlib

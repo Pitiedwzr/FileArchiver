@@ -1,4 +1,3 @@
-from multiprocessing.forkserver import write_signed
 from UI_mainWindow import Ui_MainWindow
 from UI_loginDialog import Ui_loginDialog
 from UI_signUpDialog import Ui_signUpDialog

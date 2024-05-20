@@ -3,6 +3,7 @@ from UI_loginDialog import Ui_loginDialog
 from UI_signUpDialog import Ui_signUpDialog
 import account_handling
 import sys
+from settings import config
 from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QApplication, QMainWindow, QDialog, QMessageBox
 from PySide6.QtCore import QFile
@@ -75,13 +76,12 @@ if __name__ == "__main__":
     login = loginDialog()
     signUp = signUpDialog()
 
-    firstrun = True # Will be replaced by settings (config)
-
-    if firstrun:
+    if config.common.firstRun:
         relpy = QMessageBox.question(None," ","Do you want to regsister a account?",QMessageBox.Yes | QMessageBox.No)
         if relpy == QMessageBox.Yes:
             signUp.show()
         else:
-    login.show()
-
+            login.show()
+    else:
+        login.show()
     sys.exit(app.exec())

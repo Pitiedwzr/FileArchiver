@@ -23,6 +23,7 @@
   <ItemGroup>
     <Compile Include="account_handling.py" />
     <Compile Include="FileArchiver.py" />
+    <Compile Include="settings.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="db\" />
@@ -37,6 +38,7 @@
     <Content Include="misc\*" />
     <Content Include="README.md" />
     <Content Include="requirements.txt" />
+    <Content Include="settings.yaml" />
     <Content Include="ui\*" />
     <Content Include="db\*" />
     <Content Include="resource\*" />

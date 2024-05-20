@@ -1,3 +1,4 @@
 pyside6
 hashlib
 sqlite3
+pyyaml

@@ -365,3 +365,4 @@ FodyWeavers.xsd
 # Not yet used project stuffs
 misc/
 /db/users.db-journal
+/for_assessment/develop_log/WAIT_FOR_SEPERATE

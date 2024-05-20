@@ -5,33 +5,37 @@ import hashlib
 con = sql.connect("db/users.db")
 cur = con.cursor()
 
-def check(username,password):
+def check(username, password):
     # Get salt from database
-    statement = f"SELECT salt from users WHERE username='{username}';"
-    cur.execute(statement)
+    statement = "SELECT salt FROM users WHERE username=?;"
+    cur.execute(statement, (username,))
     salt = cur.fetchone()
-    salt = salt[0] # Convert list to str
 
-    # Encrypt the given password with salt
-    byte_password = (password+salt).encode()
-    hash_password = hashlib.sha256(byte_password).hexdigest()
-
-    # Compare to the origin encrypt password
-    statement = f"SELECT username from users WHERE username='{username}' AND Password = '{hash_password}';"
-    cur.execute(statement)
-
-    if not cur.fetchone():  # An empty result evaluates to False.
+    if not salt:  # If salt not existing
         correct = False
     else:
-        correct = True
+        salt = salt[0]  # Convert list to str
+
+        # Encrypt the given password with salt
+        byte_password = (password + salt).encode()
+        hash_password = hashlib.sha256(byte_password).hexdigest()
+
+        # Compare to the original encrypted password
+        statement = "SELECT username FROM users WHERE username=? AND Password=?;"
+        cur.execute(statement, (username, hash_password))
+
+        if not cur.fetchone():  # An empty result evaluates to False.
+            correct = False
+        else:
+            correct = True
 
     return correct
 
-def add(username,password):
+def add(username, password):
     # Encrypt password with salt
     salt = os.urandom(32).hex()
-    byte_password = (password+salt).encode()
+    byte_password = (password + salt).encode()
     hash_password = hashlib.sha256(byte_password).hexdigest()
-    statement = f"INSERT INTO users VALUES ('{username}','{hash_password}','{salt}');"
-    cur.execute(statement)
+    statement = "INSERT INTO users (username, password, salt) VALUES (?, ?, ?);"
+    cur.execute(statement, (username, hash_password, salt))
     con.commit()

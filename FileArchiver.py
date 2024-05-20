@@ -70,10 +70,18 @@ class loginDialog(QDialog):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    # app.setWindowIcon(QIcon(".\resource\images\icon.ico"))
+    # app.setWindowIcon(QIcon(".\resource\images\icon.ico")) # It doesn't work...
     window = mainWindow()
     login = loginDialog()
     signUp = signUpDialog()
+
+    firstrun = True # Will be replaced by settings (config)
+
+    if firstrun:
+        relpy = QMessageBox.question(None," ","Do you want to regsister a account?",QMessageBox.Yes | QMessageBox.No)
+        if relpy == QMessageBox.Yes:
+            signUp.show()
+        else:
     login.show()
 
     sys.exit(app.exec())

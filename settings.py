@@ -2,7 +2,7 @@ import yaml
 
 class commonClass:
     def __init__(self, raw):
-        self.firstRun = raw['firstRun']
+        self.settings = raw
         self.language = raw['language']
 
 class config:

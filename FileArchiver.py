@@ -24,6 +24,7 @@ class signUpDialog(QDialog):
 
     def init_slot(self):
         self.ui.signUpButton.clicked.connect(self.add_account)
+        self.ui.skipButton.clicked.connect(self.skipRegsister)
 
     def add_account(self):
         username = self.ui.usernameLineEdit.text().strip()
@@ -35,6 +36,10 @@ class signUpDialog(QDialog):
             QMessageBox.information(None,"Success","Your account has been created.")
             self.close()
             login.show()
+
+    def skipRegsister(self):
+        self.close()
+        login.show()
 
 class loginDialog(QDialog):
     def __init__(self):

@@ -79,7 +79,7 @@ if __name__ == "__main__":
 
     if config.common.firstRun:
         config.common.firstRun = False
-        config.save("settings.yaml")
+        config.save()
         relpy = QMessageBox.question(None," ","Do you want to regsister a account?",QMessageBox.Yes | QMessageBox.No)
         if relpy == QMessageBox.Yes:
             signUp.show()

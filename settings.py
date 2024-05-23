@@ -15,7 +15,7 @@ class commonClass:
 
 class config:
     def __init__(self, raw):
-        self.common = commonClass(raw['Common'])
+        self.common = commonConfig(raw['Common'])
 
     def save(self):
         data = {

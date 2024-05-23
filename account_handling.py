@@ -39,3 +39,7 @@ def add(username, password):
     statement = "INSERT INTO users (username, password, salt) VALUES (?, ?, ?);"
     cur.execute(statement, (username, hash_password, salt))
     con.commit()
+
+def exitDB():
+    cur.close()
+    con.close()

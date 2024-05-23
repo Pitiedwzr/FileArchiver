@@ -3,6 +3,7 @@ from UI_loginDialog import Ui_loginDialog
 from UI_signUpDialog import Ui_signUpDialog
 import account_handling
 import sys
+import atexit
 from settings import config
 from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QApplication, QMainWindow, QDialog, QMessageBox
@@ -86,4 +87,5 @@ if __name__ == "__main__":
             login.show()
     else:
         login.show()
+    atexit.register(account_handling.exitDB)
     sys.exit(app.exec())

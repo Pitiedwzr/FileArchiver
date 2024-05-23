@@ -1,6 +1,6 @@
 import yaml
 
-class commonClass:
+class commonConfig:
     def __init__(self, raw):
         self.settings = raw
 

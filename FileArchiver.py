@@ -36,8 +36,6 @@ class signUpDialog(QDialog):
             self.close()
             login.show()
 
-
-
 class loginDialog(QDialog):
     def __init__(self):
         super(loginDialog,self).__init__()
@@ -68,7 +66,6 @@ class loginDialog(QDialog):
     def jumpSignUp(self):
         self.close()
         signUp.show()
-
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

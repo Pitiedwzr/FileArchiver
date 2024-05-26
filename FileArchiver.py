@@ -6,7 +6,7 @@ import sys
 import atexit
 from settings import config
 from PySide6.QtGui import QIcon
-from PySide6.QtWidgets import QApplication, QMainWindow, QDialog, QMessageBox
+from PySide6.QtWidgets import QApplication, QMainWindow, QDialog, QMessageBox, QFileDialog
 from PySide6.QtCore import QFile
 
 class mainWindow(QMainWindow):
@@ -14,6 +14,19 @@ class mainWindow(QMainWindow):
         super(mainWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.init_slot()
+
+    def init_slot(self):
+        self.ui.pendingSelectButton.clicked.connect(self.selectPendingPath)
+        self.ui.processedSelectButton.clicked.connect(self.selectProcessedPath)
+
+    def selectPendingPath(self):
+        path_pending = QFileDialog.getExistingDirectory(self,"Select the pending folder")
+        self.ui.pendingPathEdit.insert(path_pending)
+
+    def selectProcessedPath(self):
+        path_processed = QFileDialog.getExistingDirectory(self,"Select the processed folder")
+        self.ui.processedPathEdit.insert(path_processed)
 
 class signUpDialog(QDialog):
     def __init__(self):

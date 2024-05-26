@@ -45,8 +45,8 @@ class signUpDialog(QDialog):
             self.close()
             window.show()
         else:
-        self.close()
-        login.show()
+            self.close()
+            login.show()
 
 class loginDialog(QDialog):
     def __init__(self):
@@ -94,6 +94,8 @@ if __name__ == "__main__":
             signUp.show()
         else:
             login.show()
+    elif config.common.skipSignIn:
+        window.show()
     else:
         login.show()
     atexit.register(account_handling.exitDB)

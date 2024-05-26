@@ -37,7 +37,14 @@ class signUpDialog(QDialog):
             self.close()
             login.show()
 
-    def skipRegsister(self):
+    def skipRegister(self):
+        skip = QMessageBox.question(None," ","Skip only for this time or from now on? ",QMessageBox.Yes | QMessageBox.No)
+        if skip == QMessageBox.Yes:
+            config.common.skipSignIn = True
+            config.save()
+            self.close()
+            window.show()
+        else:
         self.close()
         login.show()
 

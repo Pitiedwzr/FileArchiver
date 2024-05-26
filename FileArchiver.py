@@ -24,7 +24,7 @@ class signUpDialog(QDialog):
 
     def init_slot(self):
         self.ui.signUpButton.clicked.connect(self.add_account)
-        self.ui.skipButton.clicked.connect(self.skipRegsister)
+        self.ui.skipButton.clicked.connect(self.skipRegister)
 
     def add_account(self):
         username = self.ui.usernameLineEdit.text().strip()
@@ -82,7 +82,7 @@ if __name__ == "__main__":
     if config.common.firstRun:
         config.common.firstRun = False
         config.save()
-        relpy = QMessageBox.question(None," ","Do you want to regsister a account?",QMessageBox.Yes | QMessageBox.No)
+        relpy = QMessageBox.question(None," ","Do you want to Register a account?",QMessageBox.Yes | QMessageBox.No)
         if relpy == QMessageBox.Yes:
             signUp.show()
         else:

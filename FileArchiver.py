@@ -2,6 +2,7 @@ from UI_mainWindow import Ui_MainWindow
 from UI_loginDialog import Ui_loginDialog
 from UI_signUpDialog import Ui_signUpDialog
 import account_handling
+import file_handling
 import sys
 import atexit
 from settings import config
@@ -22,10 +23,15 @@ class mainWindow(QMainWindow):
 
     def selectPendingPath(self):
         path_pending = QFileDialog.getExistingDirectory(self,"Select the pending folder")
+        self.ui.pendingPathEdit.clear()
         self.ui.pendingPathEdit.insert(path_pending)
+        full_pending, name_pending = file_handling.goThroughFiles(path_pending)
+        self.ui.pendingFileList.clear()
+        self.ui.pendingFileList.addItems(name_pending)
 
     def selectProcessedPath(self):
         path_processed = QFileDialog.getExistingDirectory(self,"Select the processed folder")
+        self.ui.processedPathEdit.clear()
         self.ui.processedPathEdit.insert(path_processed)
 
 class signUpDialog(QDialog):

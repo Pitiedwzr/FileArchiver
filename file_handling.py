@@ -1,6 +1,7 @@
 import os
 from collections import defaultdict
 
+# Use classes and objects to add other attributes to the file to be processed later.
 class PendingFile:
     def __init__(self, file_path):
         self.path = file_path

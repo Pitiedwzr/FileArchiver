@@ -13,7 +13,7 @@ def goThroughFiles(dir_path):
     for root, dirs, files_list in os.walk(dir_path):
         for file in files_list:
             full_path = os.path.join(root, file)
-            files.append(PendingFile(full_path))
+            files.append(PendingFile(full_path)) # Add the current file as a pending file to the list
     return files
 
 def categorizeByExt(files):

@@ -17,10 +17,18 @@ def goThroughFiles(dir_path):
             files.append(PendingFile(full_path)) # Add the current file as a pending file to the list
     return files
 
-def categorizeByExt(files):
-    categorized_files = defaultdict(list)
+def categorizeByExt(files, extension_mapping):
+    categorized_files = defaultdict(list) # Use defaultdict to create a dictionary
+    ext_to_category = {}
+
+    for category, extensions in extension_mapping.items():
+        for ext in extensions:
+            ext_to_category[ext] = category # The key is extension and value is the category its belongs to
+
     for file in files:
-        categorized_files[file.ext].append(file)
+        category = ext_to_category.get(file.ext, "Others") # Find the category that apply to the file's ext, if not found then categorize it as others
+        categorized_files[category].append(file) # The key is category and the value is the file
+
     return categorized_files
 
 # Load extension mapping from yaml file

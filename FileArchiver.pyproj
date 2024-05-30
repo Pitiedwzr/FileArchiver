@@ -23,6 +23,7 @@
   <ItemGroup>
     <Compile Include="account_handling.py" />
     <Compile Include="FileArchiver.py" />
+    <Compile Include="file_handling.py" />
     <Compile Include="settings.py" />
   </ItemGroup>
   <ItemGroup>
@@ -34,6 +35,7 @@
     <Folder Include="ui\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ext_map.yaml" />
     <Content Include="for_assessment\*" />
     <Content Include="misc\*" />
     <Content Include="README.md" />

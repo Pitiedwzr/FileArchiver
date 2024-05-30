@@ -1,4 +1,5 @@
 import os
+import shutil
 from collections import defaultdict
 
 # Use classes and objects to add other attributes to the file to be processed later.
@@ -22,9 +23,11 @@ def categorizeByExt(files):
         categorized_files[file.ext].append(file)
     return categorized_files
 
-directory = "./for_assessment" # Will replace by the pending path
-files = goThroughFiles(directory)
-categorized_files = categorizeByExt(files)
+# Load extension mapping from yaml file
+def loadMapping(yaml_path):
+    with open(yaml_path, 'r') as file:
+        config = yaml.safe_load(file)
+    return config.get('extension_mapping', {})
 
 for ext, files in categorized_files.items():
     print(f"Extension: {ext}")

@@ -38,7 +38,12 @@ def loadMapping(yaml_path):
         config = yaml.safe_load(file)
     return config.get('extension_mapping', {})
 
-for ext, files in categorized_files.items():
-    print(f"Extension: {ext}")
+def copyFilesToCategories(categorized_files, processed_path):
+    for category, files in categorized_files.items():
+        category_path = os.path.join(processed_path, category)
+        os.makedirs(category_path, exist_ok=True)
+        
     for file in files:
-        print(f"  {file.path}")
+            destination = os.path.join(category_path, file.name)
+            shutil.copy2(file.path, destination)
+            print(f"Copied {file.path} to {destination}") # Debug

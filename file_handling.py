@@ -8,7 +8,7 @@ class PendingFile:
     def __init__(self, file_path):
         self.path = file_path
         self.name = os.path.basename(file_path)
-        self.ext = os.path.splitext(self.name)[1]
+        self.ext = os.path.splitext(self.name)[1].lower()
 
 def goThroughFiles(dir_path):
     files = []
@@ -43,7 +43,18 @@ def copyFilesToCategories(categorized_files, processed_path):
         category_path = os.path.join(processed_path, category)
         os.makedirs(category_path, exist_ok=True)
         
-    for file in files:
+        for file in files:
             destination = os.path.join(category_path, file.name)
             shutil.copy2(file.path, destination)
             print(f"Copied {file.path} to {destination}") # Debug
+
+# Debug, connect to the ui later
+map_path = 'ext_map.yaml'
+extension_mapping = loadMapping(map_path)
+
+pending_path = "./for_assessment/develop_log/W5T2/path_getting/pending"
+processed_path = "./for_assessment/develop_log/W5T2/path_getting/processed"
+pending_files = goThroughFiles(pending_path)
+categorized_files = categorizeByExt(pending_files, extension_mapping)
+
+copyFilesToCategories(categorized_files, processed_path)

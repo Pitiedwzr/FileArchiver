@@ -1,5 +1,5 @@
 Common:
   firstRun: false
-  language: "en"
-  skipSignIn: false
+  language: en
+  skipSignIn: true
   version: 0.0.0

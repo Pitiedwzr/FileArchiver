@@ -33,6 +33,9 @@ class mainWindow(QMainWindow):
         path_processed = QFileDialog.getExistingDirectory(self,"Select the processed folder")
         self.ui.processedPathEdit.clear()
         self.ui.processedPathEdit.insert(path_processed)
+        # full_processed, name_processed = 
+        # self.ui.processedFileList.clear()
+        # self.ui.processedFileList.addItems(name_processed)
 
 class signUpDialog(QDialog):
     def __init__(self):

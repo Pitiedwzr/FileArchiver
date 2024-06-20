@@ -8,7 +8,7 @@ import atexit
 from settings import config
 from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QApplication, QMainWindow, QDialog, QMessageBox, QFileDialog
-from PySide6.QtCore import QFile
+from PySide6.QtCore import QFile, QTranslator
 
 class mainWindow(QMainWindow):
     def __init__(self):
@@ -103,6 +103,14 @@ class loginDialog(QDialog):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+    translator = QTranslator()
+
+    if translator.load("translations/main_zh-CN.qm"):
+        app.installTranslator(translator)
+        print(f"Loaded translation file") # Debug
+    else:
+        print(f"Failed to load translation file") # Debug
+
     # app.setWindowIcon(QIcon(".\resource\images\icon.ico")) # It doesn't work...
     window = mainWindow()
     login = loginDialog()
@@ -120,5 +128,6 @@ if __name__ == "__main__":
         window.show()
     else:
         login.show()
+
     atexit.register(account_handling.exitDB)
     sys.exit(app.exec())

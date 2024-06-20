@@ -105,7 +105,7 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     translator = QTranslator()
 
-    if translator.load("translations/main_zh-CN.qm"):
+    if translator.load("translations/zh_CN.qm"):
         app.installTranslator(translator)
 
     # app.setWindowIcon(QIcon(".\resource\images\icon.ico")) # It doesn't work...

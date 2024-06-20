@@ -107,9 +107,6 @@ if __name__ == "__main__":
 
     if translator.load("translations/main_zh-CN.qm"):
         app.installTranslator(translator)
-        print(f"Loaded translation file") # Debug
-    else:
-        print(f"Failed to load translation file") # Debug
 
     # app.setWindowIcon(QIcon(".\resource\images\icon.ico")) # It doesn't work...
     window = mainWindow()

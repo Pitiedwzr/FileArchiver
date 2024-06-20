@@ -57,4 +57,4 @@ processed_path = "./for_assessment/develop_log/W5T2/path_getting/processed"
 pending_files = goThroughFiles(pending_path)
 categorized_files = categorizeByExt(pending_files, extension_mapping)
 
-copyFilesToCategories(categorized_files, processed_path)
+# copyFilesToCategories(categorized_files, processed_path)

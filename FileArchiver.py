@@ -8,7 +8,7 @@ import atexit
 from settings import config
 from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QApplication, QMainWindow, QDialog, QMessageBox, QFileDialog
-from PySide6.QtCore import QFile, QTranslator
+from PySide6.QtCore import QFile, QTranslator, QLocale
 
 class mainWindow(QMainWindow):
     def __init__(self):
@@ -105,7 +105,15 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     translator = QTranslator()
 
-    if translator.load("translations/zh_CN.qm"):
+    locale = QLocale.system().name()
+
+    if locale != config.common.language and config.common.firstRun:
+        config.common.language = locale
+        config.save()
+    
+    locale = config.common.language
+
+    if translator.load(f"translations/{locale}.qm"):
         app.installTranslator(translator)
 
     # app.setWindowIcon(QIcon(".\resource\images\icon.ico")) # It doesn't work...

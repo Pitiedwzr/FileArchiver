@@ -32,8 +32,14 @@ def categorizeByExt(files, extension_mapping):
 
     return categorized_files
 
+def readRulesFiles(directory):
+    yaml_files = [f for f in os.listdir(directory) if f.endswith('.yaml')]
+    file_names = [os.path.splitext(f)[0] for f in yaml_files]
+    return file_names
+
 # Load extension mapping from yaml file
-def loadMapping(yaml_path):
+def loadMapping(yaml_file):
+    yaml_path = "rules/" + yaml_file + ".yaml"
     with open(yaml_path, 'r') as file:
         config = yaml.safe_load(file)
     return config.get('extension_mapping', {})
@@ -49,8 +55,8 @@ def copyFilesToCategories(categorized_files, processed_path):
             print(f"Copied {file.path} to {destination}") # Debug
 
 # Debug, connect to the ui later
-map_path = 'ext_map.yaml'
-extension_mapping = loadMapping(map_path)
+map_file = 'ext_map'
+extension_mapping = loadMapping(map_file)
 
 pending_path = "./for_assessment/develop_log/W5T2/path_getting/pending"
 processed_path = "./for_assessment/develop_log/W5T2/path_getting/processed"

@@ -27,11 +27,19 @@ class mainWindow(QMainWindow):
 
     def selectPendingPath(self):
         path_pending = QFileDialog.getExistingDirectory(self,"Select the pending folder")
+        if not path_pending:
+            return
+
         self.ui.pendingPathEdit.clear()
         self.ui.pendingPathEdit.insert(path_pending)
-        full_pending, name_pending = file_handling.goThroughFiles(path_pending)
+        pending_files = file_handling.goThroughFiles(path_pending)
+        paths_pending_file = []
+        for file in pending_files:
+            path_pending_file = file.path
+            paths_pending_file.append(path_pending_file)
+
         self.ui.pendingFileList.clear()
-        self.ui.pendingFileList.addItems(name_pending)
+        self.ui.pendingFileList.addItems(paths_pending_file)
 
     def selectProcessedPath(self):
         path_processed = QFileDialog.getExistingDirectory(self,"Select the processed folder")

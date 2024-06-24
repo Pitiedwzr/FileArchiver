@@ -20,6 +20,10 @@ class mainWindow(QMainWindow):
     def init_slot(self):
         self.ui.pendingSelectButton.clicked.connect(self.selectPendingPath)
         self.ui.processedSelectButton.clicked.connect(self.selectProcessedPath)
+        self.directory = "rules"
+        rules_files = file_handling.readRulesFiles(self.directory)
+        self.ui.ruleComboBox.addItems(rules_files)
+        self.ui.ruleComboBox.currentIndexChanged.connect(self.getCurrentRulesFile)
 
     def selectPendingPath(self):
         path_pending = QFileDialog.getExistingDirectory(self,"Select the pending folder")
@@ -36,6 +40,9 @@ class mainWindow(QMainWindow):
         # full_processed, name_processed = 
         # self.ui.processedFileList.clear()
         # self.ui.processedFileList.addItems(name_processed)
+
+    def getCurrentRulesFile(self):
+        selection = self.ui.ruleComboBox.currentText()
 
 class signUpDialog(QDialog):
     def __init__(self):

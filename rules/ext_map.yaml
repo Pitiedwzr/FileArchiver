@@ -1,0 +1,17 @@
+extension_mapping:
+    Picture:
+        - .jpg
+        - .jpeg
+        - .png
+        - .gif
+        - .bmp
+    Text:
+        - .txt
+    Document:
+        - .pdf
+        - .doc
+        - .docx
+    Spreadsheet:
+        - .xls
+        - .xlsx
+    Others: []

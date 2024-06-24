@@ -6,9 +6,9 @@ import file_handling
 import sys
 import atexit
 from settings import config
-from PySide6.QtGui import QIcon
+# from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QApplication, QMainWindow, QDialog, QMessageBox, QFileDialog
-from PySide6.QtCore import QFile, QTranslator, QLocale
+from PySide6.QtCore import QTranslator, QLocale
 
 class mainWindow(QMainWindow):
     def __init__(self):

@@ -29,13 +29,15 @@
   <ItemGroup>
     <Folder Include="db\" />
     <Folder Include="for_assessment\" />
+    <Folder Include="rules\" />
     <Folder Include="resource\" />
     <Folder Include="misc\" />
     <Folder Include="resource\images\" />
     <Folder Include="ui\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ext_map.yaml" />
+    <Content Include="rules\default.yaml" />
+    <Content Include="rules\ext_map.yaml" />
     <Content Include="for_assessment\*" />
     <Content Include="misc\*" />
     <Content Include="README.md" />

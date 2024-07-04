@@ -1,6 +1,7 @@
 import sqlite3 as sql
 import os
 import hashlib
+import re
 
 con = sql.connect("db/users.db")
 cur = con.cursor()
@@ -30,6 +31,13 @@ def check(username, password):
             correct = True
 
     return correct
+
+def check_legal_password(string):
+    regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,}$"
+    if re.search(regex, string):
+        return True
+    else:
+        return False
 
 def add(username, password):
     # Encrypt password with salt

@@ -68,6 +68,10 @@ class signUpDialog(QDialog):
         password = self.ui.passwordLineEdit.text().strip()
         if username == "" or password == "":
             QMessageBox.critical(None,"Error","Username or password can not be empty.")
+
+        elif not account_handling.check_legal_password(password):
+            QMessageBox.critical(None,"Error","Password should contain at least:\n- Six characters\n- One capital letter\n- One lowercase letter\n- One number")
+
         else:
             account_handling.add(username,password)
             QMessageBox.information(None,"Success","Your account has been created.")

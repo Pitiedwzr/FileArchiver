@@ -32,9 +32,9 @@ def check(username, password):
 
     return correct
 
-def check_legal_password(string):
+def check_legal_password(password):
     regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,}$"
-    if re.search(regex, string):
+    if re.search(regex, password):
         return True
     else:
         return False

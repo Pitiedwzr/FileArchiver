@@ -35,7 +35,7 @@ class mainWindow(QMainWindow):
         pending_files = file_handling.goThroughFiles(path_pending)
         paths_pending_file = []
         for file in pending_files:
-            path_pending_file = file.path
+            path_pending_file = file.path.replace(path_pending, '.', 1)
             paths_pending_file.append(path_pending_file)
 
         self.ui.pendingFileList.clear()

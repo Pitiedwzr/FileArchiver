@@ -93,8 +93,12 @@ Make sure you have python 64-bit installed on your computer
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Sorting files in certain rules
+- [ ] Connect CategoriesFiles function to gui
+- [ ] Snapshot
 - [ ] Internalization (i18n)
+- [ ] Tidy up naming
+- [ ] Refactor
+- [ ] Support documents
 
 See the [Backlog][Backlog] for more information.
 

@@ -20,10 +20,15 @@ class mainWindow(QMainWindow):
     def init_slot(self):
         self.ui.pendingSelectButton.clicked.connect(self.selectPendingPath)
         self.ui.processedSelectButton.clicked.connect(self.selectProcessedPath)
+        self.ui.processButton.clicked.connect(self.processCategory)
         self.directory = "rules"
         rules_files = file_handling.readRulesFiles(self.directory)
         self.ui.ruleComboBox.addItems(rules_files)
         self.ui.ruleComboBox.currentIndexChanged.connect(self.getCurrentRulesFile)
+
+    def processCategory(self):
+        file_handling.copyFilesToCategories(categorized_files, path_processed)
+        QMessageBox.information(None,"Success","Category complete.")
 
     def selectPendingPath(self):
         path_pending = QFileDialog.getExistingDirectory(self,"Select the pending folder")
@@ -32,6 +37,7 @@ class mainWindow(QMainWindow):
 
         self.ui.pendingPathEdit.clear()
         self.ui.pendingPathEdit.insert(path_pending)
+        global pending_files
         pending_files = file_handling.goThroughFiles(path_pending)
         paths_pending_file = []
         for file in pending_files:
@@ -42,15 +48,34 @@ class mainWindow(QMainWindow):
         self.ui.pendingFileList.addItems(paths_pending_file)
 
     def selectProcessedPath(self):
+        global path_processed
         path_processed = QFileDialog.getExistingDirectory(self,"Select the processed folder")
+        if not path_processed:
+            return
+    
         self.ui.processedPathEdit.clear()
         self.ui.processedPathEdit.insert(path_processed)
-        # full_processed, name_processed = 
-        # self.ui.processedFileList.clear()
-        # self.ui.processedFileList.addItems(name_processed)
+        
+        map_file = self.getCurrentRulesFile()
+
+        extension_mapping = file_handling.loadMapping(map_file)
+        
+        global categorized_files
+        categorized_files = file_handling.categorizeByExt(pending_files, extension_mapping)
+        
+        categorized_name = []
+
+        for category, files in categorized_files.items():
+            categorized_name.append(category)
+            for file in files:
+                categorized_name.append("- "+file.name)
+                
+        self.ui.processedFileList.clear()
+        self.ui.processedFileList.addItems(categorized_name)
 
     def getCurrentRulesFile(self):
-        selection = self.ui.ruleComboBox.currentText()
+        map_file = self.ui.ruleComboBox.currentText()
+        return map_file
 
 class signUpDialog(QDialog):
     def __init__(self):

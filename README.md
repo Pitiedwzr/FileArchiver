@@ -93,7 +93,7 @@ Make sure you have python 64-bit installed on your computer
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Connect CategoriesFiles function to gui
+- [x] ~~Connect CategoriesFiles function to gui~~
 - [ ] Snapshot
 - [ ] Internalization (i18n)
 - [ ] Tidy up naming

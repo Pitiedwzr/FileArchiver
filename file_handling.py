@@ -51,16 +51,4 @@ def copyFilesToCategories(categorized_files, processed_path):
         
         for file in files:
             destination = os.path.join(category_path, file.name)
-            shutil.copy2(file.path, destination)
-            print(f"Copied {file.path} to {destination}") # Debug
-
-# Debug, connect to the ui later
-map_file = 'ext_map'
-extension_mapping = loadMapping(map_file)
-
-pending_path = "./for_assessment/develop_log/W5T2/path_getting/pending"
-processed_path = "./for_assessment/develop_log/W5T2/path_getting/processed"
-pending_files = goThroughFiles(pending_path)
-categorized_files = categorizeByExt(pending_files, extension_mapping)
-
-# copyFilesToCategories(categorized_files, processed_path)
+            shutil.copy2(file.path, destination) # Leave copy until snapshot is complete

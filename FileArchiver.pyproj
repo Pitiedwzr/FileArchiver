@@ -27,8 +27,10 @@
     <Compile Include="settings.py" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include=".github\workflows\" />
     <Folder Include="db\" />
     <Folder Include="for_assessment\" />
+    <Folder Include=".github\" />
     <Folder Include="rules\" />
     <Folder Include="resource\" />
     <Folder Include="misc\" />
@@ -36,6 +38,7 @@
     <Folder Include="ui\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".github\workflows\package_and_release.yml" />
     <Content Include="rules\default.yaml" />
     <Content Include="rules\ext_map.yaml" />
     <Content Include="for_assessment\*" />

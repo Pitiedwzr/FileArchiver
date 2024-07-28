@@ -2,4 +2,4 @@ Common:
   firstRun: false
   language: en_US
   skipSignIn: true
-  version: 0.0.0
+  version: 1.0.0

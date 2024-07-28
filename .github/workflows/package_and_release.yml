@@ -1,0 +1,85 @@
+name: Package and Release Python Code
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        arch: [x64, arm64]
+        python-version: [3.10]
+        exclude:
+          - os: windows-latest
+            arch: arm64  # Windows doesn't support ARM64 runners in GitHub Actions yet
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+        architecture: ${{ matrix.arch }}
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pyinstaller
+
+    - name: Run PyInstaller
+      run: |
+        pyinstaller --onedir your_main_script.py
+        mv dist/your_main_script dist/your_main_script_${{ runner.os }}_${{ matrix.arch }}
+
+    - name: Compress directory
+      run: |
+        cd dist
+        if [ "${{ runner.os }}" == "Windows" ]; then
+          7z a your_main_script_${{ runner.os }}_${{ matrix.arch }}.zip your_main_script_${{ runner.os }}_${{ matrix.arch }}
+        else
+          zip -r your_main_script_${{ runner.os }}_${{ matrix.arch }}.zip your_main_script_${{ runner.os }}_${{ matrix.arch }}
+        fi
+        cd ..
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ runner.os }}-${{ matrix.arch }}-executable
+        path: dist/*.zip
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Download artifacts
+      uses: actions/download-artifact@v3
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+
+    - name: Upload Release Assets
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./${{ matrix.os }}-${{ matrix.arch }}-executable/your_main_script_${{ matrix.os }}_${{ matrix.arch }}.zip
+        asset_name: your_main_script_${{ matrix.os }}_${{ matrix.arch }}.zip
+        asset_content_type: application/zip

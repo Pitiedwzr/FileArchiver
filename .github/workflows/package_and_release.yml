@@ -12,7 +12,6 @@ jobs:
       matrix:
         os: [windows-latest, macos-13, ubuntu-latest]
         python-version: [3.10.11]
-        arch: [x64]
         include:
           - os: macos-latest
             python-version: 3.10.11
@@ -58,6 +57,13 @@ jobs:
   release:
     needs: build
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
+        arch: [x64]
+        include:
+          - os: macos-latest
+            arch: arm64
 
     steps:
       - uses: actions/checkout@v4
@@ -65,7 +71,7 @@ jobs:
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
-          name: ${{ runner.os }}-${{ matrix.arch }}-executable
+          name: ${{ matrix.os }}-${{ matrix.arch }}-executable
           path: ./dist
 
       - name: Create Release
@@ -85,6 +91,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./dist/FileArchiver_${{ runner.os }}_${{ matrix.arch }}.zip
-          asset_name: FileArchiver_${{ runner.os }}_${{ matrix.arch }}.zip
+          asset_path: ./dist/FileArchiver_${{ matrix.os }}_${{ matrix.arch }}.zip
+          asset_name: FileArchiver_${{ matrix.os }}_${{ matrix.arch }}.zip
           asset_content_type: application/zip

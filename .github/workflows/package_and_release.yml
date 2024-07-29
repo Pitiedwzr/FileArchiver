@@ -61,7 +61,6 @@ jobs:
           cp db/users.db dist/FileArchiver/db/
           mkdir -p dist/FileArchiver/rules/
           cp rules/default.yaml dist/FileArchiver/rules/
-          mkdir -p dist/FileArchiver/
           cp settings.yaml dist/FileArchiver/
 
       - name: Upload artifact

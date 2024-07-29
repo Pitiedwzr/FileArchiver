@@ -1,3 +1,2 @@
 pyside6
-sqlite3
 pyyaml

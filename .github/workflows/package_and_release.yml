@@ -10,12 +10,24 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-        arch: [x64, arm64]
+        os: [windows-latest]
         python-version: [3.10.11]
-        exclude:
-          - os: ubuntu-latest, windows-latest
-            arch: arm64  # Windows doesn't support ARM64 runners in GitHub Actions yet and 3.10.11 doesn't have a arm64 version for linux
+        include:
+          - os: windows-latest
+            python-version: 3.11.9
+            arch: arm64
+          - os: macos-latest
+            python-version: 3.10.11
+            arch: x86_64
+          - os: macos-latest
+            python-version: 3.10.11
+            arch: arm64
+          - os: ubuntu-latest
+            python-version: 3.10.14
+            arch: x86_64
+          - os: ubuntu-latest
+            python-version: 3.10.14
+            arch: arm64
 
     steps:
     - uses: actions/checkout@v4
@@ -34,16 +46,16 @@ jobs:
 
     - name: Run PyInstaller
       run: |
-        pyinstaller --onedir your_main_script.py
-        mv dist/your_main_script dist/your_main_script_${{ runner.os }}_${{ matrix.arch }}
+        pyinstaller --onedir --icon Resource/images/icon.ico FileArchiver.py
+        mv dist/FileArchiver dist/FileArchiver_${{ runner.os }}_${{ matrix.arch }}
 
     - name: Compress directory
       run: |
         cd dist
         if [ "${{ runner.os }}" == "Windows" ]; then
-          7z a your_main_script_${{ runner.os }}_${{ matrix.arch }}.zip your_main_script_${{ runner.os }}_${{ matrix.arch }}
+          7z a FileArchiver_${{ runner.os }}_${{ matrix.arch }}.zip FileArchiver_${{ runner.os }}_${{ matrix.arch }}
         else
-          zip -r your_main_script_${{ runner.os }}_${{ matrix.arch }}.zip your_main_script_${{ runner.os }}_${{ matrix.arch }}
+          zip -r FileArchiver_${{ runner.os }}_${{ matrix.arch }}.zip FileArchiver_${{ runner.os }}_${{ matrix.arch }}
         fi
         cd ..
 
@@ -80,6 +92,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./${{ matrix.os }}-${{ matrix.arch }}-executable/your_main_script_${{ matrix.os }}_${{ matrix.arch }}.zip
-        asset_name: your_main_script_${{ matrix.os }}_${{ matrix.arch }}.zip
+        asset_path: ./${{ matrix.os }}-${{ matrix.arch }}-executable/FileArchiver_${{ matrix.os }}_${{ matrix.arch }}.zip
+        asset_name: FileArchiver_${{ matrix.os }}_${{ matrix.arch }}.zip
         asset_content_type: application/zip

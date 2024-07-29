@@ -6,7 +6,26 @@ on:
       - 'v*'
 
 jobs:
+  meta:
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.get_tag.outputs.tag }}
+      is_release: ${{ steps.check_release.outputs.is_release }}
+    steps:
+      - name: Get tag
+        id: get_tag
+        run: echo "tag=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+      - name: Check if it's a release
+        id: check_release
+        run: |
+          if [[ ${{ steps.get_tag.outputs.tag }} == v* ]]; then
+            echo "is_release=true" >> $GITHUB_OUTPUT
+          else
+            echo "is_release=false" >> $GITHUB_OUTPUT
+          fi
+
   build:
+    needs: meta
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -35,63 +54,39 @@ jobs:
       - name: Run PyInstaller
         run: |
           pyinstaller --onedir --icon Resource/images/icon.ico FileArchiver.py
-          mv dist/FileArchiver dist/FileArchiver_${{ runner.os }}_${{ matrix.arch || 'x64' }}
 
-      - name: Compress directory
-        shell: bash
+      - name: Copy additional files
         run: |
-          cd dist
-          if [ "${{ runner.os }}" == "Windows" ]; then
-            7z a FileArchiver_${{ runner.os }}_${{ matrix.arch || 'x64' }}.zip FileArchiver_${{ runner.os }}_${{ matrix.arch || 'x64' }}
-          else
-            zip -r FileArchiver_${{ runner.os }}_${{ matrix.arch || 'x64' }}.zip FileArchiver_${{ runner.os }}_${{ matrix.arch || 'x64' }}
-          fi
-          cd ..
+          cp db/users.db dist/FileArchiver/db/
+          cp rules/default.yaml dist/FileArchiver/rules/
+          cp settings.yaml dist/FileArchiver/
 
-      - name: Upload artifacts
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: FileArchiver_${{ runner.os }}_${{ matrix.arch || 'x64' }}
-          path: dist/*.zip
+          name: FileArchiver-${{ runner.os }}_${{ matrix.arch || 'x64' }}
+          path: dist/FileArchiver
 
   release:
-    needs: build
+    if: ${{ needs.meta.outputs.is_release == 'true' }}
+    needs: [meta, build]
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: write
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v3
+        with:
+          path: assets
 
-    - name: Download artifacts
-      uses: actions/download-artifact@v3
+      - name: Prepare release assets
+        run: |
+          cd assets
+          for f in *; do
+            (cd $f && zip -r ../$f-${{ needs.meta.outputs.tag }}.zip .)
+          done
 
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
-        draft: false
-        prerelease: false
-
-    - name: Upload Release Assets
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./FileArchiver_${{ matrix.os }}_${{ matrix.arch || 'x64' }}/FileArchiver_${{ matrix.os }}_${{ matrix.arch || 'x64' }}.zip
-        asset_name: FileArchiver_${{ matrix.os }}_${{ matrix.arch || 'x64' }}.zip
-        asset_content_type: application/zip
-      strategy:
-        matrix:
-          include:
-            - os: Windows
-              arch: x64
-            - os: Linux
-              arch: x64
-            - os: macOS
-              arch: x64
-            - os: macOS
-              arch: arm64
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: assets/*.zip
+          tag_name: ${{ needs.meta.outputs.tag }}

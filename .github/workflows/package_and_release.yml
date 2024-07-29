@@ -10,77 +10,81 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [windows-latest,macos-13,ubuntu-latest]
+        os: [windows-latest, macos-13, ubuntu-latest]
         python-version: [3.10.11]
+        arch: [x64]
         include:
           - os: macos-latest
             python-version: 3.10.11
             arch: arm64
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v5
-      with:
-        python-version: ${{ matrix.python-version }}
-        architecture: ${{ matrix.arch }}
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: ${{ matrix.arch }}
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        pip install pyinstaller
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller
 
-    - name: Run PyInstaller
-      run: |
-        pyinstaller --onedir --icon Resource/images/icon.ico FileArchiver.py
-        mv dist/FileArchiver dist/FileArchiver_${{ runner.os }}_${{ matrix.arch }}
+      - name: Run PyInstaller
+        run: |
+          pyinstaller --onedir --icon Resource/images/icon.ico FileArchiver.py
+          mv dist/FileArchiver dist/FileArchiver_${{ runner.os }}_${{ matrix.arch }}
 
-    - name: Compress directory
-      shell: bash
-      run: |
-        cd dist
-        if [ "${{ runner.os }}" == "Windows" ]; then
-          7z a FileArchiver_${{ runner.os }}_${{ matrix.arch }}.zip FileArchiver_${{ runner.os }}_${{ matrix.arch }}
-        else
-          zip -r FileArchiver_${{ runner.os }}_${{ matrix.arch }}.zip FileArchiver_${{ runner.os }}_${{ matrix.arch }}
-        fi
-        cd ..
+      - name: Compress directory
+        shell: bash
+        run: |
+          cd dist
+          if [ "${{ runner.os }}" == "Windows" ]; then
+            7z a FileArchiver_${{ runner.os }}_${{ matrix.arch }}.zip FileArchiver_${{ runner.os }}_${{ matrix.arch }}
+          else
+            zip -r FileArchiver_${{ runner.os }}_${{ matrix.arch }}.zip FileArchiver_${{ runner.os }}_${{ matrix.arch }}
+          fi
+          cd ..
 
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: ${{ runner.os }}-${{ matrix.arch }}-executable
-        path: dist/*.zip
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ runner.os }}-${{ matrix.arch }}-executable
+          path: dist/*.zip
 
   release:
     needs: build
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Download artifacts
-      uses: actions/download-artifact@v3
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ runner.os }}-${{ matrix.arch }}-executable
+          path: ./dist
 
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
-        draft: false
-        prerelease: false
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
 
-    - name: Upload Release Assets
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./${{ matrix.os }}-${{ matrix.arch }}-executable/FileArchiver_${{ matrix.os }}_${{ matrix.arch }}.zip
-        asset_name: FileArchiver_${{ matrix.os }}_${{ matrix.arch }}.zip
-        asset_content_type: application/zip
+      - name: Upload Release Assets
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist/FileArchiver_${{ runner.os }}_${{ matrix.arch }}.zip
+          asset_name: FileArchiver_${{ runner.os }}_${{ matrix.arch }}.zip
+          asset_content_type: application/zip

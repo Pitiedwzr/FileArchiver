@@ -87,6 +87,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./${{ matrix.os }}-${{ matrix.arch }}-executable/your_main_script_${{ matrix.os }}_${{ matrix.arch }}.zip
-        asset_name: your_main_script_${{ matrix.os }}_${{ matrix.arch }}.zip
+        asset_path: ./${{ matrix.os }}-${{ matrix.arch }}-executable/FileArchiver_${{ matrix.os }}_${{ matrix.arch }}.zip
+        asset_name: FileArchiver_${{ matrix.os }}_${{ matrix.arch }}.zip
         asset_content_type: application/zip

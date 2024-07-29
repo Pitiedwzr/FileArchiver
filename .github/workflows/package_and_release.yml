@@ -38,6 +38,7 @@ jobs:
         mv dist/FileArchiver dist/FileArchiver_${{ runner.os }}_${{ matrix.arch }}
 
     - name: Compress directory
+      shell: bash
       run: |
         cd dist
         if [ "${{ runner.os }}" == "Windows" ]; then

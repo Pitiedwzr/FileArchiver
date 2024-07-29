@@ -13,7 +13,7 @@ jobs:
         os: [windows-latest, macos-13, ubuntu-latest]
         python-version: [3.10.11]
         include:
-          - os: macos-latest
+          - os: macos-13
             python-version: 3.10.11
             arch: arm64
 
@@ -24,7 +24,7 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-          architecture: ${{ matrix.arch }}
+          architecture: ${{ matrix.arch || 'x64' }}
 
       - name: Install dependencies
         run: |
@@ -35,35 +35,29 @@ jobs:
       - name: Run PyInstaller
         run: |
           pyinstaller --onedir --icon Resource/images/icon.ico FileArchiver.py
-          mv dist/FileArchiver dist/FileArchiver_${{ runner.os }}_${{ matrix.arch }}
+          mv dist/FileArchiver dist/FileArchiver_${{ runner.os }}_${{ matrix.arch || 'x64' }}
 
       - name: Compress directory
         shell: bash
         run: |
           cd dist
           if [ "${{ runner.os }}" == "Windows" ]; then
-            7z a FileArchiver_${{ runner.os }}_${{ matrix.arch }}.zip FileArchiver_${{ runner.os }}_${{ matrix.arch }}
+            7z a FileArchiver_${{ runner.os }}_${{ matrix.arch || 'x64' }}.zip FileArchiver_${{ runner.os }}_${{ matrix.arch || 'x64' }}
           else
-            zip -r FileArchiver_${{ runner.os }}_${{ matrix.arch }}.zip FileArchiver_${{ runner.os }}_${{ matrix.arch }}
+            zip -r FileArchiver_${{ runner.os }}_${{ matrix.arch || 'x64' }}.zip FileArchiver_${{ runner.os }}_${{ matrix.arch || 'x64' }}
           fi
           cd ..
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ runner.os }}-${{ matrix.arch }}-executable
+          name: FileArchiver_${{ runner.os }}_${{ matrix.arch || 'x64' }}
           path: dist/*.zip
 
   release:
     needs: build
     runs-on: ubuntu-latest
-    strategy:
-        matrix:
-          os: [Linux, Windows, macOS]
-          arch: [x64]
-          include:
-            - os: macOS
-              arch: arm64
+
     steps:
     - uses: actions/checkout@v4
 
@@ -87,6 +81,17 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./${{ matrix.os }}-${{ matrix.arch }}-executable/FileArchiver_${{ matrix.os }}_${{ matrix.arch }}.zip
-        asset_name: FileArchiver_${{ matrix.os }}_${{ matrix.arch }}.zip
+        asset_path: ./FileArchiver_${{ matrix.os }}_${{ matrix.arch || 'x64' }}/FileArchiver_${{ matrix.os }}_${{ matrix.arch || 'x64' }}.zip
+        asset_name: FileArchiver_${{ matrix.os }}_${{ matrix.arch || 'x64' }}.zip
         asset_content_type: application/zip
+      strategy:
+        matrix:
+          include:
+            - os: Windows
+              arch: x64
+            - os: Linux
+              arch: x64
+            - os: macOS
+              arch: x64
+            - os: macOS
+              arch: arm64

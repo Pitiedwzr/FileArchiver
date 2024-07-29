@@ -77,23 +77,16 @@ jobs:
       contents: write
     steps:
       - uses: actions/download-artifact@v3
-        with:
-          path: assets
-
-      - name: Display structure of downloaded files
-        run: ls -R assets
 
       - name: Prepare release assets
         run: |
-          cd assets
           for dir in */; do
             (cd "$dir" && zip -r "../FileArchiver-${dir%/}-${{ needs.meta.outputs.tag }}.zip" .)
           done
           cd ..
-          ls -l assets
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          files: assets/*.zip
+          files: ./*.zip
           tag_name: ${{ needs.meta.outputs.tag }}

@@ -88,7 +88,11 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
+        with:
+          path: ./
+          pattern: FileArchiver_*
+          merge-multiple: true
 
       - name: Create Release
         uses: softprops/action-gh-release@v1

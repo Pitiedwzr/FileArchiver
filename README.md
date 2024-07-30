@@ -94,7 +94,7 @@ Make sure you have python 64-bit installed on your computer
 ## Roadmap
 
 - [x] ~~Connect CategoriesFiles function to gui~~
-- [x] Package code into exe with GitHub Action
+- [x] ~~Package code into exe with GitHub Action~~
 - [ ] Snapshot
 - [ ] Internalization (i18n)
 - [ ] Tidy up naming

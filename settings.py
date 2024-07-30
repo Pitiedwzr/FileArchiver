@@ -1,5 +1,6 @@
 import yaml
 
+
 class commonConfig:
     def __init__(self, raw):
         self.settings = raw
@@ -13,6 +14,7 @@ class commonConfig:
         else:
             self.settings[key] = value
 
+
 class config:
     def __init__(self, raw):
         self.common = commonConfig(raw['Common'])
@@ -23,6 +25,7 @@ class config:
         }
         with open("settings.yaml", 'w') as f:
             yaml.safe_dump(data, f)
+
 
 # Load the configuration
 with open("settings.yaml", "r") as f:

@@ -3,8 +3,10 @@ import os
 import hashlib
 import re
 
+
 con = sql.connect("db/users.db")
 cur = con.cursor()
+
 
 def check(username, password):
     # Get salt from database
@@ -22,7 +24,7 @@ def check(username, password):
         hash_password = hashlib.sha256(byte_password).hexdigest()
 
         # Compare to the original encrypted password
-        statement = "SELECT username FROM users WHERE username=? AND Password=?;"
+        statement = """SELECT username FROM users WHERE username=? AND Password=?;"""
         cur.execute(statement, (username, hash_password))
 
         if not cur.fetchone():  # An empty result evaluates to False.
@@ -32,21 +34,24 @@ def check(username, password):
 
     return correct
 
+
 def check_legal_password(password):
-    regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,}$"
+    regex = r"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,}$"
     if re.search(regex, password):
         return True
     else:
         return False
+
 
 def add(username, password):
     # Encrypt password with salt
     salt = os.urandom(32).hex()
     byte_password = (password + salt).encode()
     hash_password = hashlib.sha256(byte_password).hexdigest()
-    statement = "INSERT INTO users (username, password, salt) VALUES (?, ?, ?);"
+    statement = """INSERT INTO users (username, password, salt) VALUES (?, ?, ?);"""
     cur.execute(statement, (username, hash_password, salt))
     con.commit()
+
 
 def exitDB():
     cur.close()

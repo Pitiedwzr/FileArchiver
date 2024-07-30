@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".github\workflows\package_and_release.yml" />
+    <Content Include=".pylintrc" />
     <Content Include="rules\default.yaml" />
     <Content Include="rules\ext_map.yaml" />
     <Content Include="for_assessment\*" />

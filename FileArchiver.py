@@ -10,6 +10,7 @@ from settings import config
 from PySide6.QtWidgets import QApplication, QMainWindow, QDialog, QMessageBox, QFileDialog
 from PySide6.QtCore import QTranslator, QLocale
 
+
 class mainWindow(QMainWindow):
     def __init__(self):
         super(mainWindow, self).__init__()
@@ -24,7 +25,8 @@ class mainWindow(QMainWindow):
         self.directory = "rules"
         rules_files = file_handling.readRulesFiles(self.directory)
         self.ui.ruleComboBox.addItems(rules_files)
-        self.ui.ruleComboBox.currentIndexChanged.connect(self.getCurrentRulesFile)
+        self.ui.ruleComboBox.currentIndexChanged.connect(
+            self.getCurrentRulesFile)
 
     def processCategory(self):
         file_handling.copyFilesToCategories(categorized_files, path_processed)

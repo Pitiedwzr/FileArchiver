@@ -53,7 +53,7 @@ jobs:
 
       - name: Run PyInstaller
         run: |
-          pyinstaller --onedir --icon Resource/images/icon.ico FileArchiver.py
+          pyinstaller --onedir --icon Resource/images/icon.ico --windowed FileArchiver.py
 
       - name: Copy additional files
         run: |

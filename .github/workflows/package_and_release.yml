@@ -62,12 +62,24 @@ jobs:
           mkdir -p dist/FileArchiver/rules/
           cp rules/default.yaml dist/FileArchiver/rules/
           cp settings.yaml dist/FileArchiver/
+          mv dist/FileArchiver dist/FileArchiver_${{ runner.os }}_${{ matrix.arch || 'x64' }}_${{ needs.meta.outputs.tag }}
 
-      - name: Upload artifact
+      - name: Compress directory
+        shell: bash
+        run: |
+          cd dist
+          if [ "${{ runner.os }}" == "Windows" ]; then
+            7z a FileArchiver_${{ runner.os }}_${{ matrix.arch || 'x64' }}_${{ needs.meta.outputs.tag }}.zip FileArchiver_${{ runner.os }}_${{ matrix.arch || 'x64' }}_${{ needs.meta.outputs.tag }}
+          else
+            zip -r FileArchiver_${{ runner.os }}_${{ matrix.arch || 'x64' }}_${{ needs.meta.outputs.tag }}.zip FileArchiver_${{ runner.os }}_${{ matrix.arch || 'x64' }}_${{ needs.meta.outputs.tag }}
+          fi
+          cd ..
+
+      - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: FileArchiver-${{ runner.os }}_${{ matrix.arch || 'x64' }}
-          path: dist/FileArchiver
+          name: FileArchiver_${{ runner.os }}_${{ matrix.arch || 'x64' }}
+          path: dist/*.zip
 
   release:
     if: ${{ needs.meta.outputs.is_release == 'true' }}
@@ -77,13 +89,6 @@ jobs:
       contents: write
     steps:
       - uses: actions/download-artifact@v3
-
-      - name: Prepare release assets
-        run: |
-          for dir in ./; do
-            (cd "$dir" && zip -r "../FileArchiver-${dir%/}-${{ needs.meta.outputs.tag }}.zip" .)
-          done
-          cd ..
 
       - name: Create Release
         uses: softprops/action-gh-release@v1

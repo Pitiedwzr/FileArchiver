@@ -6,7 +6,7 @@ import file_handling
 import sys
 import atexit
 from settings import config
-# from PySide6.QtGui import QIcon
+from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QApplication, QMainWindow, QDialog, QMessageBox, QFileDialog
 from PySide6.QtCore import QTranslator, QLocale
 
@@ -162,7 +162,7 @@ if __name__ == "__main__":
     if translator.load(f"translations/{locale}.qm"):
         app.installTranslator(translator)
 
-    # app.setWindowIcon(QIcon(".\resource\images\icon.ico")) # It doesn't work...
+    app.setWindowIcon(QIcon(".\Resource\images\icon.ico"))
     window = mainWindow()
     login = loginDialog()
     signUp = signUpDialog()

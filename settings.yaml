@@ -1,5 +1,5 @@
 Common:
-  firstRun: false
-  language: zh_CN
+  firstRun: true
+  language: en_US
   skipSignIn: false
   version: 1.0.4

@@ -163,6 +163,7 @@ if __name__ == "__main__":
         app.installTranslator(translator)
 
     app.setWindowIcon(QIcon(".\Resource\images\icon.ico"))
+    app.setStyle("fusion")
     window = mainWindow()
     login = loginDialog()
     signUp = signUpDialog()

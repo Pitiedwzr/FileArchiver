@@ -62,6 +62,7 @@ jobs:
           cp db/users.db dist/FileArchiver/db/
           mkdir -p dist/FileArchiver/rules/
           cp rules/default.yaml dist/FileArchiver/rules/
+          mkdir -p dist/FileArchiver/Resource/images/
           cp settings.yaml dist/FileArchiver/
           mv dist/FileArchiver dist/FileArchiver_${{ runner.os }}_${{ matrix.arch || 'x64' }}_${{ needs.meta.outputs.tag }}
 

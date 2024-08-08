@@ -63,6 +63,9 @@ jobs:
           mkdir -p dist/FileArchiver/rules/
           cp rules/default.yaml dist/FileArchiver/rules/
           mkdir -p dist/FileArchiver/Resource/images/
+          cp Resource/images/icon.ico dist/FileArchiver/Resource/images/
+          mkdir -p dist/FileArchiver/translations/
+          cp translations/*.qm dist/FileArchiver/translations/
           cp settings.yaml dist/FileArchiver/
           mv dist/FileArchiver dist/FileArchiver_${{ runner.os }}_${{ matrix.arch || 'x64' }}_${{ needs.meta.outputs.tag }}
 

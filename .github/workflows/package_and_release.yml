@@ -62,8 +62,8 @@ jobs:
           cp db/users.db dist/FileArchiver/db/
           mkdir -p dist/FileArchiver/rules/
           cp rules/default.yaml dist/FileArchiver/rules/
-          mkdir -p dist/FileArchiver/Resource/images/
-          cp Resource/images/icon.ico dist/FileArchiver/Resource/images/
+          mkdir -p dist/FileArchiver/resource/images/
+          cp resource/images/icon.ico dist/FileArchiver/resource/images/
           mkdir -p dist/FileArchiver/translations/
           cp translations/*.qm dist/FileArchiver/translations/
           cp settings.yaml dist/FileArchiver/

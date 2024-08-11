@@ -8,7 +8,11 @@ import atexit
 from settings import config
 from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QApplication, QMainWindow, QDialog, QMessageBox, QFileDialog
-from PySide6.QtCore import QTranslator, QLocale
+from PySide6.QtCore import QTranslator, QLocale, QCoreApplication
+import account_handling
+import file_handling
+import atexit
+import sys
 
 
 class mainWindow(QMainWindow):

@@ -51,12 +51,12 @@ def readRulesFiles(directory):
 # Load extension mapping from yaml file
 def loadMapping(yaml_file):
     yaml_path = "rules/" + yaml_file + ".yaml"
-    with open(yaml_path, 'r') as file:
-        config = yaml.safe_load(file)
+    with open(yaml_path, 'r') as yamlfile:
+        config = yaml.safe_load(yamlfile)
     return config.get('extension_mapping', {})
 
 
-def generate_snapshot(files, category_path):
+def generateSnapshot(files, category_path):
     current_time = time.strftime("%Y_%m_%d_%H_%M_%S")
     snapshot_dir = "snapshots"
     snapshot_file = f"{snapshot_dir}/{current_time}.yaml"
@@ -86,7 +86,7 @@ def generate_snapshot(files, category_path):
         with open(snapshot_file, "w") as yamlfile:
             yaml.safe_dump(existing_data, yamlfile)
 
-def load_snapshot(snapshot):
+def loadSnapshot(snapshot):
     with open(snapshot, "r") as yamlfile:
         snapshot_data = yaml.safe_load(yamlfile)
 
@@ -113,6 +113,6 @@ def copyFilesToCategories(categorized_files, processed_path, save_snapshot):
         for file in files:
             destination = os.path.join(category_path, file.name)
             shutil.move(file.path, destination)
-
+            
         if save_snapshot:
-            generate_snapshot(files, category_path)
+            generateSnapshot(files, category_path)

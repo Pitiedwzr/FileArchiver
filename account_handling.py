@@ -35,7 +35,7 @@ def check(username, password):
     return correct
 
 
-def check_legal_password(password):
+def checkLegalPassword(password):
     regex = r"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,}$"
     if re.search(regex, password):
         return True
@@ -53,6 +53,6 @@ def add(username, password):
     con.commit()
 
 
-def exitDB():
+def exit_db():
     cur.close()
     con.close()

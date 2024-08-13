@@ -1,10 +1,6 @@
 from UI_mainWindow import Ui_MainWindow
 from UI_loginDialog import Ui_loginDialog
 from UI_signUpDialog import Ui_signUpDialog
-import account_handling
-import file_handling
-import sys
-import atexit
 from settings import config
 from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QApplication, QMainWindow, QDialog, QMessageBox, QFileDialog
@@ -21,22 +17,22 @@ class mainWindow(QMainWindow):
         super(mainWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.init_slot()
+        self.initSlot()
 
-    def init_slot(self):
+    def initSlot(self):
         self.ui.pendingSelectButton.clicked.connect(self.selectPendingPath)
         self.ui.processedSelectButton.clicked.connect(self.selectProcessedPath)
         self.ui.processButton.clicked.connect(self.processCategory)
         self.directory = "rules"
         rules_files = file_handling.readRulesFiles(self.directory)
         self.ui.ruleComboBox.addItems(rules_files)
-        self.ui.ruleComboBox.currentIndexChanged.connect(
-        self.ui.actionChinese_CN.triggered.connect(self.languageApplyZHCN)
-        self.ui.actionEnglish_US.triggered.connect(self.languageApplyENUS)
-        self.ui.actionLoad_snapshot.triggered.connect(self.load_snapshot)
+        self.ui.ruleComboBox.currentIndexChanged.connect(self.getCurrentRulesFile)
+        self.ui.actionChinese_CN.triggered.connect(self.languageApplyZhcn)
+        self.ui.actionEnglish_US.triggered.connect(self.languageApplyEnus)
+        self.ui.actionLoad_snapshot.triggered.connect(self.loadSnapshot)
         self.ui.snapshotCheckBox.stateChanged.connect(self.sscbStateChanged)
 
-    def load_snapshot(self):
+    def loadSnapshot(self):
         snapshots, _ = QFileDialog.getOpenFileNames(
             self,
             QCoreApplication.translate("mainWindow", "Open snapshot file"),
@@ -60,7 +56,7 @@ class mainWindow(QMainWindow):
                 QMessageBox.Yes | QMessageBox.No
             )
             if confirm == QMessageBox.Yes:
-                file_handling.load_snapshot(snapshot_path)
+                file_handling.loadSnapshot(snapshot_path)
                 QMessageBox.information(
                     None,
                     QCoreApplication.translate("mainWindow", "Success"),
@@ -76,7 +72,7 @@ class mainWindow(QMainWindow):
             save_snapshot = False
             
 
-    def languageApplyZHCN(self):
+    def languageApplyZhcn(self):
         config.common.language = "zh_CN"
         config.save()
         QMessageBox.information(
@@ -85,7 +81,7 @@ class mainWindow(QMainWindow):
             QCoreApplication.translate("mainWindow", "Language will change to Chinese (China) on next startup.")
         )
         
-    def languageApplyENUS(self):
+    def languageApplyEnus(self):
         config.common.language = "en_US"
         config.save()
         QMessageBox.information(
@@ -160,13 +156,13 @@ class signUpDialog(QDialog):
         super(signUpDialog,self).__init__()
         self.ui = Ui_signUpDialog()
         self.ui.setupUi(self)
-        self.init_slot()
+        self.initSlot()
 
-    def init_slot(self):
-        self.ui.signUpButton.clicked.connect(self.add_account)
+    def initSlot(self):
+        self.ui.signUpButton.clicked.connect(self.addAccount)
         self.ui.skipButton.clicked.connect(self.skipRegister)
 
-    def add_account(self):
+    def addAccount(self):
         username = self.ui.usernameLineEdit.text().strip()
         password = self.ui.passwordLineEdit.text().strip()
         if username == "" or password == "":
@@ -176,7 +172,7 @@ class signUpDialog(QDialog):
                 QCoreApplication.translate("signUpDialog", "Username or password can not be empty.")
             )
 
-        elif not account_handling.check_legal_password(password):
+        elif not account_handling.checkLegalPassword(password):
             QMessageBox.critical(
                 None,
                 QCoreApplication.translate("signUpDialog", "Error"),
@@ -214,13 +210,13 @@ class loginDialog(QDialog):
         super(loginDialog,self).__init__()
         self.ui = Ui_loginDialog()
         self.ui.setupUi(self)
-        self.init_slot()
+        self.initSlot()
 
-    def init_slot(self):
-        self.ui.signInButton.clicked.connect(self.check_account)
+    def initSlot(self):
+        self.ui.signInButton.clicked.connect(self.checkAccount)
         self.ui.signUpButton.clicked.connect(self.jumpSignUp)
 
-    def check_account(self):
+    def checkAccount(self):
         username = self.ui.usernameLineEdit.text().strip()
         password = self.ui.passwordLineEdit.text().strip()
         if username == "" or password == "":
@@ -287,5 +283,5 @@ if __name__ == "__main__":
     else:
         login.show()
 
-    atexit.register(account_handling.exitDB)
+    atexit.register(account_handling.exit_db)
     sys.exit(app.exec())

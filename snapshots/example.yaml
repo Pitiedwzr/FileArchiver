@@ -1,0 +1,37 @@
+NewBmp.bmp:
+  pending_path: D:/Source/Repos/FileArchiver/for_assessment/testing/how_it_works/pending\NewBmp.bmp
+  processed_path: D:/Source/Repos/FileArchiver/for_assessment/testing/how_it_works/processed\Picture\NewBmp.bmp
+NewDoc.doc:
+  pending_path: D:/Source/Repos/FileArchiver/for_assessment/testing/how_it_works/pending\NewDoc.doc
+  processed_path: D:/Source/Repos/FileArchiver/for_assessment/testing/how_it_works/processed\Document\NewDoc.doc
+NewDocx.docx:
+  pending_path: D:/Source/Repos/FileArchiver/for_assessment/testing/how_it_works/pending\NewDocx.docx
+  processed_path: D:/Source/Repos/FileArchiver/for_assessment/testing/how_it_works/processed\Document\NewDocx.docx
+NewGif.gif:
+  pending_path: D:/Source/Repos/FileArchiver/for_assessment/testing/how_it_works/pending\NewGif.gif
+  processed_path: D:/Source/Repos/FileArchiver/for_assessment/testing/how_it_works/processed\Picture\NewGif.gif
+NewJpeg.jpeg:
+  pending_path: D:/Source/Repos/FileArchiver/for_assessment/testing/how_it_works/pending\NewJpeg.jpeg
+  processed_path: D:/Source/Repos/FileArchiver/for_assessment/testing/how_it_works/processed\Picture\NewJpeg.jpeg
+NewJpg.jpg:
+  pending_path: D:/Source/Repos/FileArchiver/for_assessment/testing/how_it_works/pending\NewJpg.jpg
+  processed_path: D:/Source/Repos/FileArchiver/for_assessment/testing/how_it_works/processed\Picture\NewJpg.jpg
+NewPdf.pdf:
+  pending_path: D:/Source/Repos/FileArchiver/for_assessment/testing/how_it_works/pending\NewPdf.pdf
+  processed_path: D:/Source/Repos/FileArchiver/for_assessment/testing/how_it_works/processed\Document\NewPdf.pdf
+NewPng.png:
+  pending_path: D:/Source/Repos/FileArchiver/for_assessment/testing/how_it_works/pending\NewPng.png
+  processed_path: D:/Source/Repos/FileArchiver/for_assessment/testing/how_it_works/processed\Picture\NewPng.png
+NewRandomFile.bak:
+  pending_path: D:/Source/Repos/FileArchiver/for_assessment/testing/how_it_works/pending\NewRandomFile.bak
+  processed_path: D:/Source/Repos/FileArchiver/for_assessment/testing/how_it_works/processed\Others\NewRandomFile.bak
+NewText.txt:
+  pending_path: D:/Source/Repos/FileArchiver/for_assessment/testing/how_it_works/pending\NewText.txt
+  processed_path: D:/Source/Repos/FileArchiver/for_assessment/testing/how_it_works/processed\Text\NewText.txt
+NewXls.xls:
+  pending_path: D:/Source/Repos/FileArchiver/for_assessment/testing/how_it_works/pending\NewXls.xls
+  processed_path: D:/Source/Repos/FileArchiver/for_assessment/testing/how_it_works/processed\Spreadsheet\NewXls.xls
+NewXlsx.xlsx:
+  pending_path: D:/Source/Repos/FileArchiver/for_assessment/testing/how_it_works/pending\NewXlsx.xlsx
+  processed_path: D:/Source/Repos/FileArchiver/for_assessment/testing/how_it_works/processed\Spreadsheet\NewXlsx.xlsx
+date: '2024_08_13_20_20_21'

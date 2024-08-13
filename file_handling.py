@@ -1,5 +1,6 @@
 import os
 import yaml
+import time
 import shutil
 from collections import defaultdict
 
@@ -55,12 +56,63 @@ def loadMapping(yaml_file):
     return config.get('extension_mapping', {})
 
 
-def copyFilesToCategories(categorized_files, processed_path):
+def generate_snapshot(files, category_path):
+    current_time = time.strftime("%Y_%m_%d_%H_%M_%S")
+    snapshot_dir = "snapshots"
+    snapshot_file = f"{snapshot_dir}/{current_time}.yaml"
+
+    os.makedirs(snapshot_dir, exist_ok=True)
+    for file in files:
+        final_path = os.path.join(category_path, file.name)
+        snapshot = {
+            "date": current_time,
+            file.name: {
+                "pending_path": file.path,
+                "processed_path": final_path
+                }
+            }
+
+        # Load existing data or create an empty dict
+        if os.path.exists(snapshot_file):
+            with open(snapshot_file, "r") as yamlfile:
+                existing_data = yaml.safe_load(yamlfile) or {}
+        else:
+            existing_data = {}
+
+        # Update existing data with new snapshot
+        existing_data.update(snapshot)
+
+        # Write updated data to file
+        with open(snapshot_file, "w") as yamlfile:
+            yaml.safe_dump(existing_data, yamlfile)
+
+def load_snapshot(snapshot):
+    with open(snapshot, "r") as yamlfile:
+        snapshot_data = yaml.safe_load(yamlfile)
+
+    for file_name, paths in snapshot_data.items():
+        if file_name == "date":
+            continue  # Skip the date entry
+
+        pending_path = paths.get("pending_path")
+        processed_path = paths.get("processed_path")
+
+        if pending_path and processed_path and os.path.exists(processed_path):
+            # Ensure the directory of pending_path exists
+            os.makedirs(os.path.dirname(pending_path), exist_ok=True)
+  
+            # Move the file back to its original location
+            shutil.move(processed_path, pending_path)
+
+
+def copyFilesToCategories(categorized_files, processed_path, save_snapshot):
     for category, files in categorized_files.items():
         category_path = os.path.join(processed_path, category)
         os.makedirs(category_path, exist_ok=True)
 
         for file in files:
             destination = os.path.join(category_path, file.name)
-            # Leave copy until snapshot is complete
-            shutil.copy2(file.path, destination)
+            shutil.move(file.path, destination)
+
+        if save_snapshot:
+            generate_snapshot(files, category_path)

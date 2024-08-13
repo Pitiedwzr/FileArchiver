@@ -13,6 +13,7 @@ import account_handling
 import file_handling
 import atexit
 import sys
+import os
 
 
 class mainWindow(QMainWindow):
@@ -32,6 +33,48 @@ class mainWindow(QMainWindow):
         self.ui.ruleComboBox.currentIndexChanged.connect(
         self.ui.actionChinese_CN.triggered.connect(self.languageApplyZHCN)
         self.ui.actionEnglish_US.triggered.connect(self.languageApplyENUS)
+        self.ui.actionLoad_snapshot.triggered.connect(self.load_snapshot)
+        self.ui.snapshotCheckBox.stateChanged.connect(self.sscbStateChanged)
+
+    def load_snapshot(self):
+        snapshots, _ = QFileDialog.getOpenFileNames(
+            self,
+            QCoreApplication.translate("mainWindow", "Open snapshot file"),
+            "snapshots",
+            QCoreApplication.translate("mainWindow", "Snapshot file (*.yaml)"),
+        )
+        
+        if len(snapshots) != 1:
+            QMessageBox.warning(
+                None,
+                QCoreApplication.translate("mainWindow", "Error"),
+                QCoreApplication.translate("mainWindow", f"You can only select one snapshot for loading.")
+            )
+        else:
+            snapshot_path = snapshots[0]
+            snapshot_name = os.path.basename(snapshot_path)
+            confirm = QMessageBox.question(
+                None,
+                QCoreApplication.translate("mainWindow", "Warning"),
+                QCoreApplication.translate("mainWindow", f"Are you sure you want to load the snapshot {snapshot_name}? This will undo all changes in that process."),
+                QMessageBox.Yes | QMessageBox.No
+            )
+            if confirm == QMessageBox.Yes:
+                file_handling.load_snapshot(snapshot_path)
+                QMessageBox.information(
+                    None,
+                    QCoreApplication.translate("mainWindow", "Success"),
+                    QCoreApplication.translate("mainWindow", f"The snapshot {snapshot_name} has been loaded, undo all changes.")
+                )
+
+    def sscbStateChanged(self):
+        global save_snapshot
+        save_snapshot = False
+        if self.ui.snapshotCheckBox.isChecked():
+            save_snapshot = True
+        else:
+            save_snapshot = False
+            
 
     def languageApplyZHCN(self):
         config.common.language = "zh_CN"

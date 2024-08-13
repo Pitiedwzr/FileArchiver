@@ -155,6 +155,19 @@
      <string>Process</string>
     </property>
    </widget>
+   <widget class="QCheckBox" name="snapshotCheckBox">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>330</y>
+      <width>121</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Save snapshot</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -169,7 +182,6 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionSave_snapshot"/>
     <addaction name="actionLoad_snapshot"/>
    </widget>
    <widget class="QMenu" name="menuHelp">

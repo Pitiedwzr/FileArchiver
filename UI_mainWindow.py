@@ -16,10 +16,10 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QIcon, QImage, QKeySequence, QLinearGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
-from PySide6.QtWidgets import (QApplication, QComboBox, QLabel, QLineEdit,
-    QListWidget, QListWidgetItem, QMainWindow, QMenu,
-    QMenuBar, QPushButton, QSizePolicy, QStatusBar,
-    QWidget)
+from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QLabel,
+    QLineEdit, QListWidget, QListWidgetItem, QMainWindow,
+    QMenu, QMenuBar, QPushButton, QSizePolicy,
+    QStatusBar, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -78,6 +78,9 @@ class Ui_MainWindow(object):
         self.processButton = QPushButton(self.centralwidget)
         self.processButton.setObjectName(u"processButton")
         self.processButton.setGeometry(QRect(340, 433, 121, 31))
+        self.snapshotCheckBox = QCheckBox(self.centralwidget)
+        self.snapshotCheckBox.setObjectName(u"snapshotCheckBox")
+        self.snapshotCheckBox.setGeometry(QRect(340, 330, 121, 20))
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
@@ -98,7 +101,6 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuFile.menuAction())
         self.menubar.addAction(self.menuSettings.menuAction())
         self.menubar.addAction(self.menuHelp.menuAction())
-        self.menuFile.addAction(self.actionSave_snapshot)
         self.menuFile.addAction(self.actionLoad_snapshot)
         self.menuHelp.addAction(self.actionFile_Archiver_Help)
         self.menuHelp.addSeparator()

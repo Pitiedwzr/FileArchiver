@@ -31,6 +31,7 @@
     <Folder Include="db\" />
     <Folder Include="for_assessment\" />
     <Folder Include=".github\" />
+    <Folder Include="snapshots\" />
     <Folder Include="rules\" />
     <Folder Include="resource\" />
     <Folder Include="misc\" />

@@ -366,3 +366,6 @@ FodyWeavers.xsd
 misc/
 /db/users.db-journal
 /for_assessment/develop_log/WAIT_FOR_SEPERATE
+/update_translation.bat
+/update_ui.bat
+*.mkv

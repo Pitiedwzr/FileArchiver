@@ -30,14 +30,40 @@ class mainWindow(QMainWindow):
         rules_files = file_handling.readRulesFiles(self.directory)
         self.ui.ruleComboBox.addItems(rules_files)
         self.ui.ruleComboBox.currentIndexChanged.connect(
-            self.getCurrentRulesFile)
+        self.ui.actionChinese_CN.triggered.connect(self.languageApplyZHCN)
+        self.ui.actionEnglish_US.triggered.connect(self.languageApplyENUS)
 
+    def languageApplyZHCN(self):
+        config.common.language = "zh_CN"
+        config.save()
+        QMessageBox.information(
+            None,
+            QCoreApplication.translate("mainWindow", "Success"),
+            QCoreApplication.translate("mainWindow", "Language will change to Chinese (China) on next startup.")
+        )
+        
+    def languageApplyENUS(self):
+        config.common.language = "en_US"
+        config.save()
+        QMessageBox.information(
+            None,
+            QCoreApplication.translate("mainWindow", "Success"),
+            QCoreApplication.translate("mainWindow", "Language will change to English (America) on next startup.")
+        )
+        
     def processCategory(self):
-        file_handling.copyFilesToCategories(categorized_files, path_processed)
-        QMessageBox.information(None,"Success","Category complete.")
+        file_handling.copyFilesToCategories(categorized_files, path_processed, save_snapshot)
+        QMessageBox.information(
+            None,
+            QCoreApplication.translate("mainWindow", "Success"),
+            QCoreApplication.translate("mainWindow", "Category complete.")
+        )
 
     def selectPendingPath(self):
-        path_pending = QFileDialog.getExistingDirectory(self,"Select the pending folder")
+        path_pending = QFileDialog.getExistingDirectory(
+            self,
+            QCoreApplication.translate("mainWindow", "Select the pending folder")
+        )
         if not path_pending:
             return
 
@@ -55,7 +81,10 @@ class mainWindow(QMainWindow):
 
     def selectProcessedPath(self):
         global path_processed
-        path_processed = QFileDialog.getExistingDirectory(self,"Select the processed folder")
+        path_processed = QFileDialog.getExistingDirectory(
+            self,
+            QCoreApplication.translate("mainWindow", "Select the processed folder")
+        )
         if not path_processed:
             return
     
@@ -98,19 +127,36 @@ class signUpDialog(QDialog):
         username = self.ui.usernameLineEdit.text().strip()
         password = self.ui.passwordLineEdit.text().strip()
         if username == "" or password == "":
-            QMessageBox.critical(None,"Error","Username or password can not be empty.")
+            QMessageBox.critical(
+                None,
+                QCoreApplication.translate("signUpDialog", "Error"),
+                QCoreApplication.translate("signUpDialog", "Username or password can not be empty.")
+            )
 
         elif not account_handling.check_legal_password(password):
-            QMessageBox.critical(None,"Error","Password should contain at least:\n- Six characters\n- One capital letter\n- One lowercase letter\n- One number")
+            QMessageBox.critical(
+                None,
+                QCoreApplication.translate("signUpDialog", "Error"),
+                QCoreApplication.translate("signUpDialog", "Password should contain at least:\n- Six characters\n- One capital letter\n- One lowercase letter\n- One number")
+            )
 
         else:
             account_handling.add(username,password)
-            QMessageBox.information(None,"Success","Your account has been created.")
+            QMessageBox.information(
+                None,
+                QCoreApplication.translate("signUpDialog", "Success"),
+                QCoreApplication.translate("signUpDialog", "Your account has been created.")
+            )
             self.close()
             login.show()
 
     def skipRegister(self):
-        skip = QMessageBox.question(None," ","Do you want to skip login and register from now on? ",QMessageBox.Yes | QMessageBox.No)
+        skip = QMessageBox.question(
+            None,
+            QCoreApplication.translate("signUpDialog", " "),
+            QCoreApplication.translate("signUpDialog", "Do you want to skip login and register from now on?"),
+            QMessageBox.Yes | QMessageBox.No
+        )
         if skip == QMessageBox.Yes:
             config.common.skipSignIn = True
             config.save()
@@ -135,13 +181,21 @@ class loginDialog(QDialog):
         username = self.ui.usernameLineEdit.text().strip()
         password = self.ui.passwordLineEdit.text().strip()
         if username == "" or password == "":
-            QMessageBox.critical(None,"Error","Username or password can not be empty.")
+            QMessageBox.critical(
+                None,
+                QCoreApplication.translate("loginDialog", "Error"),
+                QCoreApplication.translate("loginDialog", "Username or password can not be empty.")
+            )
         else:
             correct = account_handling.check(username,password)
             if correct:
                 self.jumpMain()
             else:
-                QMessageBox.critical(None,"Error","Incorrect user name or password.")
+                QMessageBox.critical(
+                    None,
+                    QCoreApplication.translate("loginDialog", "Error"),
+                    QCoreApplication.translate("loginDialog", "Incorrect user name or password.")
+                )
 
     def jumpMain(self):
         self.close()
@@ -175,8 +229,13 @@ if __name__ == "__main__":
     if config.common.firstRun:
         config.common.firstRun = False
         config.save()
-        relpy = QMessageBox.question(None," ","Do you want to Register a account?",QMessageBox.Yes | QMessageBox.No)
-        if relpy == QMessageBox.Yes:
+        reply = QMessageBox.question(
+            None,
+            QCoreApplication.translate("app", " "),
+            QCoreApplication.translate("app", "Do you want to Register a account?"),
+            QMessageBox.Yes | QMessageBox.No
+        )
+        if reply == QMessageBox.Yes:
             signUp.show()
         else:
             login.show()

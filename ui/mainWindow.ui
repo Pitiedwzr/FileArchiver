@@ -184,7 +184,15 @@
     <property name="title">
      <string>Settings</string>
     </property>
-    <addaction name="actionLanguage"/>
+    <widget class="QMenu" name="menuLanguage">
+     <property name="title">
+      <string>Language</string>
+     </property>
+     <addaction name="actionEnglish_US"/>
+     <addaction name="actionEnglish_UK"/>
+     <addaction name="actionChinese_CN"/>
+    </widget>
+    <addaction name="menuLanguage"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuSettings"/>
@@ -211,9 +219,19 @@
     <string>Load snapshot</string>
    </property>
   </action>
-  <action name="actionLanguage">
+  <action name="actionEnglish_US">
    <property name="text">
-    <string>Language</string>
+    <string>English (US)</string>
+   </property>
+  </action>
+  <action name="actionEnglish_UK">
+   <property name="text">
+    <string>English (UK)</string>
+   </property>
+  </action>
+  <action name="actionChinese_CN">
+   <property name="text">
+    <string>Chinese (CN)</string>
    </property>
   </action>
  </widget>

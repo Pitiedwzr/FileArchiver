@@ -95,9 +95,9 @@ Make sure you have python 64-bit installed on your computer
 
 - [x] ~~Connect CategoriesFiles function to gui~~
 - [x] ~~Package code into exe with GitHub Action~~
-- [ ] Snapshot
+- [x] ~~Snapshot~~
 - [ ] Internalization (i18n)
-- [ ] Tidy up naming
+- [x] ~~Tidy up naming~~
 - [ ] Refactor
 - [ ] Support documents
 

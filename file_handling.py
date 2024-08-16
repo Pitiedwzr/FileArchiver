@@ -60,9 +60,9 @@ def readRulesFiles(directory):
 def loadMapping(yaml_file):
     yaml_path = "rules/" + yaml_file + ".yaml"
     try:
-    with open(yaml_path, 'r') as yamlfile:
-        config = yaml.safe_load(yamlfile)
-    return config.get('extension_mapping', {})
+        with open(yaml_path, 'r') as yamlfile:
+            config = yaml.safe_load(yamlfile)
+        return config.get('extension_mapping', {})
     except FileNotFoundError:
         QMessageBox.critical(
                 None,
@@ -81,7 +81,7 @@ def loadMapping(yaml_file):
 
 # Generate a snapshot (yaml) file of the file processing operation
 def generateSnapshot(files, category_path):
-    current_time = time.strftime("%Y_%m_%d_%H_%M_%S")
+    current_time = time.strftime("%Y_%m_%d_%H_%M")
     snapshot_dir = "snapshots"
     snapshot_file = f"{snapshot_dir}/{current_time}.yaml"
 
@@ -114,15 +114,15 @@ def generateSnapshot(files, category_path):
 # Load the snapshot, recover files from the processed path to their original locations
 def loadSnapshot(snapshot):
     try:
-    with open(snapshot, "r") as yamlfile:
-        snapshot_data = yaml.safe_load(yamlfile)
+        with open(snapshot, "r") as yamlfile:
+            snapshot_data = yaml.safe_load(yamlfile)
 
-    for file_name, paths in snapshot_data.items():
-        if file_name == "date":
-            continue  # Skip the date entry
+        for file_name, paths in snapshot_data.items():
+            if file_name == "date":
+                continue  # Skip the date entry
 
-        pending_path = paths.get("pending_path")
-        processed_path = paths.get("processed_path")
+            pending_path = paths.get("pending_path")
+            processed_path = paths.get("processed_path")
 
             if pending_path == None or processed_path == None: # Check if the file is not a snapshot file
                 QMessageBox.critical(
@@ -132,13 +132,13 @@ def loadSnapshot(snapshot):
                 )
                 break
 
-        if pending_path and processed_path and os.path.exists(processed_path):
-            # Ensure the directory of pending_path exists
-            os.makedirs(os.path.dirname(pending_path), exist_ok=True)
-  
-            # Move the file back to its original location
-            shutil.move(processed_path, pending_path)
+            if pending_path and processed_path and os.path.exists(processed_path):
+                # Ensure the directory of pending_path exists
+                os.makedirs(os.path.dirname(pending_path), exist_ok=True)
 
+                # Move the file back to its original location
+                shutil.move(processed_path, pending_path)
+                
             return True
     except FileNotFoundError:
         QMessageBox.critical(

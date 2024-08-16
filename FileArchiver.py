@@ -22,6 +22,7 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
         self.initSlot()
 
+
     # Connect functions to the UI
     def initSlot(self):
         self.ui.pendingSelectButton.clicked.connect(self.selectPendingPath)
@@ -34,6 +35,7 @@ class MainWindow(QMainWindow):
         self.setupLanguageActions()
         self.ui.actionLoad_snapshot.triggered.connect(self.loadSnapshot)
         self.ui.snapshotCheckBox.stateChanged.connect(self.sscbStateChanged)
+
 
     # Get the snapshot file from user input and pass it to the function
     def loadSnapshot(self):
@@ -50,6 +52,7 @@ class MainWindow(QMainWindow):
                 QCoreApplication.translate("mainWindow", "Error"),
                 QCoreApplication.translate("mainWindow", f"You can only select one snapshot for loading.")
             )
+            
         else:
             snapshot_path = snapshots[0]
             snapshot_name = os.path.basename(snapshot_path)
@@ -59,19 +62,19 @@ class MainWindow(QMainWindow):
                 QCoreApplication.translate("mainWindow", f"Are you sure you want to load the snapshot {snapshot_name}? This will undo all changes in that process."),
                 QMessageBox.Yes | QMessageBox.No
             )
+            
             if confirm == QMessageBox.Yes:
-                file_handling.loadSnapshot(snapshot_path)
-                QMessageBox.information(
-                    None,
-                    QCoreApplication.translate("mainWindow", "Success"),
-                    QCoreApplication.translate("mainWindow", f"The snapshot {snapshot_name} has been loaded, undo all changes.")
-                )
+                if file_handling.loadSnapshot(snapshot_path):
+                    QMessageBox.information(
+                        None,
+                        QCoreApplication.translate("mainWindow", "Success"),
+                        QCoreApplication.translate("mainWindow", f"The snapshot {snapshot_name} has been loaded, undo all changes.")
+                    )
     
 
     # Generate snapshot if user want
     def sscbStateChanged(self):
-        global save_snapshot
-        save_snapshot = False
+        self.save_snapshot = False
         if self.ui.snapshotCheckBox.isChecked():
             save_snapshot = True
         else:
@@ -104,11 +107,11 @@ class MainWindow(QMainWindow):
     def processCategory(self):
         try:
             file_handling.moveFilesToCategories(self.categorized_files, self.path_processed, self.save_snapshot)
-        QMessageBox.information(
-            None,
-            QCoreApplication.translate("mainWindow", "Success"),
-            QCoreApplication.translate("mainWindow", "Category complete.")
-        )
+            QMessageBox.information(
+                None,
+                QCoreApplication.translate("mainWindow", "Success"),
+                QCoreApplication.translate("mainWindow", "Category complete.")
+            )
         except NameError and AttributeError: # Check if user doesn't choose a path
             QMessageBox.critical(
                 None,
@@ -119,20 +122,19 @@ class MainWindow(QMainWindow):
 
     # Get the files in the pending path, add them to the list
     def selectPendingPath(self):
-        path_pending = QFileDialog.getExistingDirectory(
+        self.path_pending = QFileDialog.getExistingDirectory(
             self,
             QCoreApplication.translate("mainWindow", "Select the pending folder")
         )
-        if not path_pending: # If not a avaliable path then return
+        if not self.path_pending: # If not a avaliable path then return
             return
 
         self.ui.pendingPathEdit.clear()
-        self.ui.pendingPathEdit.insert(path_pending)
-        global pending_files
-        pending_files = file_handling.goThroughFiles(path_pending)
+        self.ui.pendingPathEdit.insert(self.path_pending)
+        self.pending_files = file_handling.goThroughFiles(self.path_pending)
         paths_pending_file = []
-        for file in pending_files:
-            path_pending_file = file.path.replace(path_pending, '.', 1)
+        for file in self.pending_files:
+            path_pending_file = file.path.replace(self.path_pending, '.', 1)
             paths_pending_file.append(path_pending_file)
 
         self.ui.pendingFileList.clear()
@@ -141,33 +143,28 @@ class MainWindow(QMainWindow):
 
     # Get the files in the processed path, pre-processed them and show them in the list
     def selectProcessedPath(self):
-        global path_processed
-        path_processed = QFileDialog.getExistingDirectory(
+        self.path_processed = QFileDialog.getExistingDirectory(
             self,
             QCoreApplication.translate("mainWindow", "Select the processed folder")
         )
-        if not path_processed:
+        if not self.path_processed:
             return
     
         self.ui.processedPathEdit.clear()
-        self.ui.processedPathEdit.insert(path_processed)
-        
+        self.ui.processedPathEdit.insert(self.path_processed)
         map_file = self.getCurrentRulesFile()
-
         extension_mapping = file_handling.loadMapping(map_file)
-        
-        global categorized_files
-        categorized_files = file_handling.categorizeByExt(pending_files, extension_mapping)
-        
+        self.categorized_files = file_handling.categorizeByExt(self.pending_files, extension_mapping)
         categorized_name = []
 
-        for category, files in categorized_files.items():
+        for category, files in self.categorized_files.items():
             categorized_name.append(category)
             for file in files:
                 categorized_name.append("- "+file.name)
                 
         self.ui.processedFileList.clear()
         self.ui.processedFileList.addItems(categorized_name)
+
 
     # Get the rule file that user selected
     def getCurrentRulesFile(self):

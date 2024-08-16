@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="en_US">
+<TS version="2.1" language="en_GB">
 <context>
     <name>Dialog</name>
     <message>
         <source>Login</source>
-        <translation type="vanished">Login</translation>
+        <translation type="vanished">Log In</translation>
     </message>
     <message>
         <source>Username</source>
@@ -17,7 +17,7 @@
     </message>
     <message>
         <source>Sign Up</source>
-        <translation type="vanished">Sign up</translation>
+        <translation type="vanished">Sign Up</translation>
     </message>
     <message>
         <source>Sign In</source>
@@ -48,11 +48,11 @@
     </message>
     <message>
         <source>Save snapshot</source>
-        <translation type="vanished">Save snapshot</translation>
+        <translation type="vanished">Save Snapshot</translation>
     </message>
     <message>
         <source>Load snapshot</source>
-        <translation type="vanished">Load snapshot</translation>
+        <translation type="vanished">Load Snapshot</translation>
     </message>
     <message>
         <source>Language</source>
@@ -104,8 +104,8 @@
     </message>
     <message>
         <location filename="../FileArchiver.py" line="274"/>
-        <source>Do you want to Register a account?</source>
-        <translation>Do you want to Register a account?</translation>
+        <source>Do you want to Register an account?</source>
+        <translation>Do you want to Register an account?</translation>
     </message>
 </context>
 <context>
@@ -118,13 +118,13 @@
     </message>
     <message>
         <location filename="../FileArchiver.py" line="227"/>
-        <source>Username or password can not be empty.</source>
-        <translation>Username or password can not be empty.</translation>
+        <source>Username or password cannot be empty.</source>
+        <translation>Username or password cannot be empty.</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="237"/>
-        <source>Incorrect user name or password.</source>
-        <translation>Incorrect user name or password.</translation>
+        <source>Incorrect username or password.</source>
+        <translation>Incorrect username or password.</translation>
     </message>
 </context>
 <context>
@@ -132,12 +132,12 @@
     <message>
         <location filename="../FileArchiver.py" line="38"/>
         <source>Open snapshot file</source>
-        <translation>Open snapshot file</translation>
+        <translation>Open Snapshot File</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="40"/>
         <source>Snapshot file (*.yaml)</source>
-        <translation>Snapshot file (*.yaml)</translation>
+        <translation>Snapshot File (*.yaml)</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="46"/>
@@ -179,8 +179,8 @@
     </message>
     <message>
         <location filename="../FileArchiver.py" line="91"/>
-        <source>Language will change to English (America) on next startup.</source>
-        <translation>Language will change to English (America) on next startup.</translation>
+        <source>Language will change to English (United States) on next startup.</source>
+        <translation>Language will change to English (United States) on next startup.</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="99"/>
@@ -248,8 +248,8 @@
     </message>
     <message>
         <location filename="../FileArchiver.py" line="173"/>
-        <source>Username or password can not be empty.</source>
-        <translation>Username or password can not be empty.</translation>
+        <source>Username or password cannot be empty.</source>
+        <translation>Username or password cannot be empty.</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="180"/>

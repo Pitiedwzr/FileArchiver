@@ -5,7 +5,7 @@ import shutil
 from collections import defaultdict
 
 
-# Use classes and objects to add other attributes to the file
+# Use classes and objects to add attributes to the file
 class PendingFile:
     def __init__(self, file_path):
         self.path = file_path
@@ -13,6 +13,7 @@ class PendingFile:
         self.ext = os.path.splitext(self.name)[1].lower()
 
 
+# Add all files in the given path as the object into the list and return it
 def goThroughFiles(dir_path):
     files = []
     for root, dirs, files_list in os.walk(dir_path):
@@ -23,6 +24,7 @@ def goThroughFiles(dir_path):
     return files
 
 
+# Use the extension map to categorize the files, return a dictionary
 def categorizeByExt(files, extension_mapping):
     categorized_files = defaultdict(list)
     ext_to_category = {}
@@ -42,13 +44,14 @@ def categorizeByExt(files, extension_mapping):
     return categorized_files
 
 
+# Find the map file (yaml) in the path
 def readRulesFiles(directory):
     yaml_files = [f for f in os.listdir(directory) if f.endswith('.yaml')]
     file_names = [os.path.splitext(f)[0] for f in yaml_files]
     return file_names
 
 
-# Load extension mapping from yaml file
+# Load extension mapping from map file (yaml)
 def loadMapping(yaml_file):
     yaml_path = "rules/" + yaml_file + ".yaml"
     with open(yaml_path, 'r') as yamlfile:
@@ -56,6 +59,7 @@ def loadMapping(yaml_file):
     return config.get('extension_mapping', {})
 
 
+# Record the pending path and the processed path of every file, save into yaml file
 def generateSnapshot(files, category_path):
     current_time = time.strftime("%Y_%m_%d_%H_%M_%S")
     snapshot_dir = "snapshots"
@@ -86,6 +90,8 @@ def generateSnapshot(files, category_path):
         with open(snapshot_file, "w") as yamlfile:
             yaml.safe_dump(existing_data, yamlfile)
 
+
+# Recover files from the processed path to the pending path in the yaml file
 def loadSnapshot(snapshot):
     with open(snapshot, "r") as yamlfile:
         snapshot_data = yaml.safe_load(yamlfile)
@@ -105,7 +111,8 @@ def loadSnapshot(snapshot):
             shutil.move(processed_path, pending_path)
 
 
-def copyFilesToCategories(categorized_files, processed_path, save_snapshot):
+# Categorize files with the categories
+def moveFilesToCategories(categorized_files, processed_path, save_snapshot):
     for category, files in categorized_files.items():
         category_path = os.path.join(processed_path, category)
         os.makedirs(category_path, exist_ok=True)

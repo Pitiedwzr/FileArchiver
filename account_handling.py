@@ -4,10 +4,12 @@ import hashlib
 import re
 
 
+# Connect to the database
 con = sql.connect("db/users.db")
 cur = con.cursor()
 
 
+# Check the username and the password are correct or not and return a boolean
 def check(username, password):
     # Get salt from database
     statement = "SELECT salt FROM users WHERE username=?;"
@@ -35,6 +37,7 @@ def check(username, password):
     return correct
 
 
+# Check the password is legal or not and return a boolean
 def checkLegalPassword(password):
     regex = r"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,}$"
     if re.search(regex, password):
@@ -43,6 +46,7 @@ def checkLegalPassword(password):
         return False
 
 
+# Add the username and the password to database with encrypt
 def add(username, password):
     # Encrypt password with salt
     salt = os.urandom(32).hex()
@@ -53,6 +57,7 @@ def add(username, password):
     con.commit()
 
 
-def exit_db():
+# Close the connect with the database
+def exitDB():
     cur.close()
     con.close()

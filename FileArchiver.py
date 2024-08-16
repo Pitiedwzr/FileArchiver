@@ -12,13 +12,15 @@ import sys
 import os
 
 
-class mainWindow(QMainWindow):
+class MainWindow(QMainWindow):
+    # Inital the UI and functions
     def __init__(self):
-        super(mainWindow, self).__init__()
+        super(MainWindow, self).__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.initSlot()
 
+    # Connect functions to the UI
     def initSlot(self):
         self.ui.pendingSelectButton.clicked.connect(self.selectPendingPath)
         self.ui.processedSelectButton.clicked.connect(self.selectProcessedPath)
@@ -32,6 +34,7 @@ class mainWindow(QMainWindow):
         self.ui.actionLoad_snapshot.triggered.connect(self.loadSnapshot)
         self.ui.snapshotCheckBox.stateChanged.connect(self.sscbStateChanged)
 
+    # Get the snapshot file from user input and pass it to the function
     def loadSnapshot(self):
         snapshots, _ = QFileDialog.getOpenFileNames(
             self,
@@ -40,7 +43,7 @@ class mainWindow(QMainWindow):
             QCoreApplication.translate("mainWindow", "Snapshot file (*.yaml)"),
         )
         
-        if len(snapshots) != 1:
+        if len(snapshots) != 1: # Check if user choose more than one file
             QMessageBox.warning(
                 None,
                 QCoreApplication.translate("mainWindow", "Error"),
@@ -62,7 +65,9 @@ class mainWindow(QMainWindow):
                     QCoreApplication.translate("mainWindow", "Success"),
                     QCoreApplication.translate("mainWindow", f"The snapshot {snapshot_name} has been loaded, undo all changes.")
                 )
+    
 
+    # Generate snapshot if user want
     def sscbStateChanged(self):
         global save_snapshot
         save_snapshot = False
@@ -72,6 +77,8 @@ class mainWindow(QMainWindow):
             save_snapshot = False
             
 
+    # Change languages
+    # Need to be refactored  
     def languageApplyZhcn(self):
         config.common.language = "zh_CN"
         config.save()
@@ -81,6 +88,7 @@ class mainWindow(QMainWindow):
             QCoreApplication.translate("mainWindow", "Language will change to Chinese (China) on next startup.")
         )
         
+
     def languageApplyEnus(self):
         config.common.language = "en_US"
         config.save()
@@ -90,20 +98,24 @@ class mainWindow(QMainWindow):
             QCoreApplication.translate("mainWindow", "Language will change to English (America) on next startup.")
         )
         
+
+    # Execute process
     def processCategory(self):
-        file_handling.copyFilesToCategories(categorized_files, path_processed, save_snapshot)
+        file_handling.moveFilesToCategories(categorized_files, path_processed, save_snapshot)
         QMessageBox.information(
             None,
             QCoreApplication.translate("mainWindow", "Success"),
             QCoreApplication.translate("mainWindow", "Category complete.")
         )
 
+
+    # Get the files in the pending path, add them to the list
     def selectPendingPath(self):
         path_pending = QFileDialog.getExistingDirectory(
             self,
             QCoreApplication.translate("mainWindow", "Select the pending folder")
         )
-        if not path_pending:
+        if not path_pending: # If not a avaliable path then return
             return
 
         self.ui.pendingPathEdit.clear()
@@ -118,6 +130,8 @@ class mainWindow(QMainWindow):
         self.ui.pendingFileList.clear()
         self.ui.pendingFileList.addItems(paths_pending_file)
 
+
+    # Get the files in the processed path, pre-processed them and show them in the list
     def selectProcessedPath(self):
         global path_processed
         path_processed = QFileDialog.getExistingDirectory(
@@ -147,32 +161,39 @@ class mainWindow(QMainWindow):
         self.ui.processedFileList.clear()
         self.ui.processedFileList.addItems(categorized_name)
 
+    # Get the rule file that user selected
     def getCurrentRulesFile(self):
         map_file = self.ui.ruleComboBox.currentText()
         return map_file
 
-class signUpDialog(QDialog):
+
+class SignUpDialog(QDialog):
+    # Inital the UI and functions
     def __init__(self):
-        super(signUpDialog,self).__init__()
+        super(SignUpDialog,self).__init__()
         self.ui = Ui_signUpDialog()
         self.ui.setupUi(self)
         self.initSlot()
 
+
+    # Connect functions to the UI
     def initSlot(self):
         self.ui.signUpButton.clicked.connect(self.addAccount)
         self.ui.skipButton.clicked.connect(self.skipRegister)
 
+
+    # Get user input and pass to the function
     def addAccount(self):
         username = self.ui.usernameLineEdit.text().strip()
         password = self.ui.passwordLineEdit.text().strip()
-        if username == "" or password == "":
+        if username == "" or password == "": # If user input nothing then ask them input again
             QMessageBox.critical(
                 None,
                 QCoreApplication.translate("signUpDialog", "Error"),
                 QCoreApplication.translate("signUpDialog", "Username or password can not be empty.")
             )
 
-        elif not account_handling.checkLegalPassword(password):
+        elif not account_handling.checkLegalPassword(password): # If user input a not legal password then ask them input again
             QMessageBox.critical(
                 None,
                 QCoreApplication.translate("signUpDialog", "Error"),
@@ -189,6 +210,8 @@ class signUpDialog(QDialog):
             self.close()
             login.show()
 
+
+    # If user don't want to use login system, diable the login part and add to the settings
     def skipRegister(self):
         skip = QMessageBox.question(
             None,
@@ -205,21 +228,27 @@ class signUpDialog(QDialog):
             self.close()
             login.show()
 
-class loginDialog(QDialog):
+
+class LoginDialog(QDialog):
+    # Inital the UI and functions
     def __init__(self):
-        super(loginDialog,self).__init__()
+        super(LoginDialog,self).__init__()
         self.ui = Ui_loginDialog()
         self.ui.setupUi(self)
         self.initSlot()
 
+
+    # Connect functions to the UI
     def initSlot(self):
         self.ui.signInButton.clicked.connect(self.checkAccount)
         self.ui.signUpButton.clicked.connect(self.jumpSignUp)
 
+
+    # Pass the username and password to the function and get a boolean, jump to main window if is True
     def checkAccount(self):
         username = self.ui.usernameLineEdit.text().strip()
         password = self.ui.passwordLineEdit.text().strip()
-        if username == "" or password == "":
+        if username == "" or password == "": # If user input nothing then ask them input again
             QMessageBox.critical(
                 None,
                 QCoreApplication.translate("loginDialog", "Error"),
@@ -236,35 +265,45 @@ class loginDialog(QDialog):
                     QCoreApplication.translate("loginDialog", "Incorrect user name or password.")
                 )
 
+
+    # Jump to main window and close the correct windows
     def jumpMain(self):
         self.close()
         window.show()
 
+
+    # Jump to sing up window and close the correct windows
     def jumpSignUp(self):
         self.close()
         signUp.show()
 
+
+# Main program running
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    translator = QTranslator()
+    translator = QTranslator() # Initial the translator
+    locale = QLocale.system().name() # Get the system language which the user use
 
-    locale = QLocale.system().name()
-
+    # Change the default language (English) to the system language
     if locale != config.common.language and config.common.firstRun:
         config.common.language = locale
         config.save()
     
-    locale = config.common.language
+    locale = config.common.language # Change the language in the settings
 
+    # Load translation
     if translator.load(f"translations/{locale}.qm"):
         app.installTranslator(translator)
 
     app.setWindowIcon(QIcon(".\Resource\images\icon.ico"))
     app.setStyle("fusion")
-    window = mainWindow()
-    login = loginDialog()
-    signUp = signUpDialog()
+    
+    # Inital all windows
+    window = MainWindow()
+    login = LoginDialog()
+    signUp = SignUpDialog()
 
+    # Ask the user who first run the program want to sign up or not
     if config.common.firstRun:
         config.common.firstRun = False
         config.save()
@@ -274,14 +313,21 @@ if __name__ == "__main__":
             QCoreApplication.translate("app", "Do you want to Register a account?"),
             QMessageBox.Yes | QMessageBox.No
         )
+        
         if reply == QMessageBox.Yes:
             signUp.show()
+            
         else:
             login.show()
+            
+    # If user disable the login system them just show the main window
     elif config.common.skipSignIn:
         window.show()
+        
+    # Normallly show the login window
     else:
         login.show()
-
-    atexit.register(account_handling.exit_db)
+        
+    # Close the database when exit the program
+    atexit.register(account_handling.exitDB)
     sys.exit(app.exec())

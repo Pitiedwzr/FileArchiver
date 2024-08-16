@@ -21,6 +21,7 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.initSlot()
+        self.setupLanguageActions()
 
 
     # Connect functions to the UI
@@ -32,7 +33,6 @@ class MainWindow(QMainWindow):
         rules_files = file_handling.readRulesFiles(self.directory)
         self.ui.ruleComboBox.addItems(rules_files)
         self.ui.ruleComboBox.currentIndexChanged.connect(self.getCurrentRulesFile)
-        self.setupLanguageActions()
         self.ui.actionLoad_snapshot.triggered.connect(self.loadSnapshot)
         self.ui.snapshotCheckBox.stateChanged.connect(self.sscbStateChanged)
         self.ui.actionEnableLogin.triggered.connect(self.enableLogin)
@@ -125,7 +125,7 @@ class MainWindow(QMainWindow):
         }
 
         for lang_code, (action, lang_name) in language_actions.items():
-            action.triggered.connect(lambda: self.changeLanguage(lang_code, lang_name)) # Use lambda function to avoid run it when connect it
+            action.triggered.connect(lambda lc=lang_code, ln=lang_name: self.changeLanguage(lc, ln)) # Use lambda function to avoid run it when connect it
 
 
     # Change languages to the passed one 

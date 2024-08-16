@@ -29,8 +29,7 @@ class MainWindow(QMainWindow):
         rules_files = file_handling.readRulesFiles(self.directory)
         self.ui.ruleComboBox.addItems(rules_files)
         self.ui.ruleComboBox.currentIndexChanged.connect(self.getCurrentRulesFile)
-        self.ui.actionChinese_CN.triggered.connect(self.languageApplyZhcn)
-        self.ui.actionEnglish_US.triggered.connect(self.languageApplyEnus)
+        self.setupLanguageActions()
         self.ui.actionLoad_snapshot.triggered.connect(self.loadSnapshot)
         self.ui.snapshotCheckBox.stateChanged.connect(self.sscbStateChanged)
 
@@ -77,27 +76,27 @@ class MainWindow(QMainWindow):
             save_snapshot = False
             
 
-    # Change languages
-    # Need to be refactored  
-    def languageApplyZhcn(self):
-        config.common.language = "zh_CN"
-        config.save()
-        QMessageBox.information(
-            None,
-            QCoreApplication.translate("mainWindow", "Success"),
-            QCoreApplication.translate("mainWindow", "Language will change to Chinese (China) on next startup.")
-        )
-        
+    # Initial a dictionary and tuple for language changing
+    def setupLanguageActions(self):
+        language_actions = {
+            "zh_CN": (self.ui.actionChinese_CN, QCoreApplication.translate("mainWindow", "Chinese (China)")),
+            "en_US": (self.ui.actionEnglish_US, QCoreApplication.translate("mainWindow", "English (America)"))
+        }
 
-    def languageApplyEnus(self):
-        config.common.language = "en_US"
+        for lang_code, (action, lang_name) in language_actions.items():
+            action.triggered.connect(lambda: self.changeLanguage(lang_code, lang_name)) # Use lambda function to avoid run it when connect it
+
+
+    # Change languages to the passed one 
+    def changeLanguage(self, lang_code, lang_name):
+        config.common.language = lang_code
         config.save()
+        
         QMessageBox.information(
             None,
             QCoreApplication.translate("mainWindow", "Success"),
-            QCoreApplication.translate("mainWindow", "Language will change to English (America) on next startup.")
+            QCoreApplication.translate("mainWindow", f"Language will change to {lang_name} on next startup.")
         )
-        
 
     # Execute process
     def processCategory(self):

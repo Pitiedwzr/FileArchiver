@@ -1,4 +1,5 @@
 ﻿<!-- PROJECT LOGO -->
+# IMPORTANT: This branch will not update after 16.8.2024 because it's the due date of the assessment. If you want to use the program, you should access the [master][master] branch.
 <br />
 <div align="center">
   <a href="https://github.com/Pitiedwzr/FileArchiver">
@@ -15,6 +16,7 @@
     An app that can help you organize your files!
   </p>
 </div>
+
 
 
 <!-- TABLE OF CONTENTS -->
@@ -41,7 +43,6 @@
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
-
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
@@ -96,9 +97,9 @@ Make sure you have python 64-bit installed on your computer
 - [x] ~~Connect CategoriesFiles function to gui~~
 - [x] ~~Package code into exe with GitHub Action~~
 - [x] ~~Snapshot~~
-- [ ] Internalization (i18n)
+- [x] ~~Internalization (i18n)~~
 - [x] ~~Tidy up naming~~
-- [ ] Refactor
+- [x] ~~Refactor~~
 - [ ] Support documents
 
 See the [Backlog][Backlog] for more information.
@@ -128,3 +129,4 @@ Distributed under the LGPL License. See `LICENSE.txt` for more information.
 [Qt-url]: https://qt.io/
 [Releases]: https://github.com/Pitiedwzr/FileArchiver/releases
 [Backlog]: https://github.com/users/Pitiedwzr/projects/1/views/1
+[master]: https://github.com/Pitiedwzr/FileArchiver/tree/master

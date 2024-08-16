@@ -40,7 +40,7 @@ class MainWindow(QMainWindow):
 
 
     def enableLogin(self):
-        config.common.skipSignIn = True
+        config.common.skipSignIn = False
         config.save()
         QMessageBox.information(
             None,
@@ -49,7 +49,7 @@ class MainWindow(QMainWindow):
         )
 
     def disableLogin(self):
-        config.common.skipSignIn = False
+        config.common.skipSignIn = True
         config.save()
         QMessageBox.information(
             None,
@@ -96,9 +96,9 @@ class MainWindow(QMainWindow):
     def sscbStateChanged(self):
         self.save_snapshot = False
         if self.ui.snapshotCheckBox.isChecked():
-            save_snapshot = True
+            self.save_snapshot = True
         else:
-            save_snapshot = False
+            self.save_snapshot = False
             
 
     # Initial a dictionary and tuple for language changing

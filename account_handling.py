@@ -9,7 +9,7 @@ con = sql.connect("db/users.db")
 cur = con.cursor()
 
 
-# Check the username and the password are correct or not and return a boolean
+# Check the username and the password match a user in the database, return True if it's correct
 def check(username, password):
     # Get salt from database
     statement = "SELECT salt FROM users WHERE username=?;"
@@ -37,7 +37,8 @@ def check(username, password):
     return correct
 
 
-# Check the password is legal or not and return a boolean
+# Check if the provided password meets the required using regex, return True if password is valid
+# Required: 6 character, 1 uppercase, 1 lowercase, 1 number
 def checkLegalPassword(password):
     regex = r"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,}$"
     if re.search(regex, password):

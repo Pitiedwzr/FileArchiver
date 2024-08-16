@@ -13,7 +13,7 @@ class PendingFile:
         self.ext = os.path.splitext(self.name)[1].lower()
 
 
-# Add all files in the given path as the object into the list and return it
+# Go through a directory and create PendingFile objects for each file, return a list of PendingFile objects      
 def goThroughFiles(dir_path):
     files = []
     for root, dirs, files_list in os.walk(dir_path):
@@ -24,7 +24,8 @@ def goThroughFiles(dir_path):
     return files
 
 
-# Use the extension map to categorize the files, return a dictionary
+# Categorize files based on their extensions using the provided mapping
+# Return a dictionary with categories as keys and lists of files as values
 def categorizeByExt(files, extension_mapping):
     categorized_files = defaultdict(list)
     ext_to_category = {}
@@ -45,13 +46,15 @@ def categorizeByExt(files, extension_mapping):
 
 
 # Find the map file (yaml) in the path
+# Return a list of rule file names without extensions
 def readRulesFiles(directory):
     yaml_files = [f for f in os.listdir(directory) if f.endswith('.yaml')]
     file_names = [os.path.splitext(f)[0] for f in yaml_files]
     return file_names
 
 
-# Load extension mapping from map file (yaml)
+# Load extension mapping from the name of map file (without the extension)
+# return a dictionary containing the extension mapping
 def loadMapping(yaml_file):
     yaml_path = "rules/" + yaml_file + ".yaml"
     with open(yaml_path, 'r') as yamlfile:
@@ -59,7 +62,7 @@ def loadMapping(yaml_file):
     return config.get('extension_mapping', {})
 
 
-# Record the pending path and the processed path of every file, save into yaml file
+# Generate a snapshot (yaml) file of the file processing operation
 def generateSnapshot(files, category_path):
     current_time = time.strftime("%Y_%m_%d_%H_%M_%S")
     snapshot_dir = "snapshots"
@@ -91,7 +94,7 @@ def generateSnapshot(files, category_path):
             yaml.safe_dump(existing_data, yamlfile)
 
 
-# Recover files from the processed path to the pending path in the yaml file
+# Load the snapshot, recover files from the processed path to their original locations
 def loadSnapshot(snapshot):
     with open(snapshot, "r") as yamlfile:
         snapshot_data = yaml.safe_load(yamlfile)
@@ -111,7 +114,7 @@ def loadSnapshot(snapshot):
             shutil.move(processed_path, pending_path)
 
 
-# Categorize files with the categories
+# Move files to their category folders and optionally save a snapshot
 def moveFilesToCategories(categorized_files, processed_path, save_snapshot):
     for category, files in categorized_files.items():
         category_path = os.path.join(processed_path, category)

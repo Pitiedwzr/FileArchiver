@@ -1,17 +1,22 @@
 import yaml
 
 
-# Use class to manage settings
+# Represents common configuration settings.
+# Provides attribute-like access to configuration items.
 class CommonConfig:
     # Set to the data that get from the raw data
     def __init__(self, raw):
         self.settings = raw
 
-    # Use the key which passed here to find its value
+    # Allow attribute-like access to configuration items
+    # item is the configuration item to access
+    # return the value of the configuration item
     def __getattr__(self, item):
         return self.settings.get(item)
 
-    # Save the key and value
+    # Allow attribute-like setting of configuration items.
+    # key is the configuration item to set
+    # value is the value to save to the configuration item
     def __setattr__(self, key, value):
         if key == 'settings':
             super().__setattr__(key, value)

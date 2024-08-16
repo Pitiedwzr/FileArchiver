@@ -12,6 +12,8 @@ import sys
 import os
 
 
+# Main window of the File Archiver application
+# Handles file selection, processing, and user interface interactions
 class MainWindow(QMainWindow):
     # Inital the UI and functions
     def __init__(self):

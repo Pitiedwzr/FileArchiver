@@ -10,6 +10,18 @@
     <height>600</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>800</width>
+    <height>600</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>File Archiver</string>
   </property>
@@ -201,10 +213,32 @@
       <string>Language</string>
      </property>
      <addaction name="actionEnglish_US"/>
-     <addaction name="actionEnglish_UK"/>
+     <addaction name="actionEnglish_GB"/>
      <addaction name="actionChinese_CN"/>
+     <addaction name="actionChinese_TW"/>
+     <addaction name="actionChinese_HK"/>
+     <addaction name="actionFrench"/>
+     <addaction name="actionGerman"/>
+     <addaction name="actionPortuguese"/>
+     <addaction name="actionRussian"/>
+     <addaction name="actionJapanese"/>
+     <addaction name="actionArabic"/>
+     <addaction name="actionHindi"/>
+     <addaction name="actionKorean"/>
+     <addaction name="actionItalian"/>
+     <addaction name="actionTurkish"/>
+     <addaction name="actionDutch"/>
+     <addaction name="actionSwedish"/>
+    </widget>
+    <widget class="QMenu" name="menuLogin_system">
+     <property name="title">
+      <string>Login system</string>
+     </property>
+     <addaction name="actionEnableLogin"/>
+     <addaction name="actionDisableLogin"/>
     </widget>
     <addaction name="menuLanguage"/>
+    <addaction name="menuLogin_system"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuSettings"/>
@@ -233,17 +267,102 @@
   </action>
   <action name="actionEnglish_US">
    <property name="text">
-    <string>English (US)</string>
+    <string>English (American)</string>
    </property>
   </action>
-  <action name="actionEnglish_UK">
+  <action name="actionEnglish_GB">
    <property name="text">
-    <string>English (UK)</string>
+    <string>English (Britain)</string>
    </property>
   </action>
   <action name="actionChinese_CN">
    <property name="text">
-    <string>Chinese (CN)</string>
+    <string>Simplified Chinese (China)</string>
+   </property>
+  </action>
+  <action name="actionChinese_TW">
+   <property name="text">
+    <string>Traditional Chinese (Taiwan)</string>
+   </property>
+  </action>
+  <action name="actionChinese_HK">
+   <property name="text">
+    <string>Traditional Chinese (Hongkong)</string>
+   </property>
+  </action>
+  <action name="actionFrench">
+   <property name="text">
+    <string>French</string>
+   </property>
+  </action>
+  <action name="actionGerman">
+   <property name="text">
+    <string>German</string>
+   </property>
+  </action>
+  <action name="actionPortuguese">
+   <property name="text">
+    <string>Portuguese</string>
+   </property>
+  </action>
+  <action name="actionRussian">
+   <property name="text">
+    <string>Russian</string>
+   </property>
+  </action>
+  <action name="actionJapanese">
+   <property name="text">
+    <string>Japanese</string>
+   </property>
+  </action>
+  <action name="actionArabic">
+   <property name="text">
+    <string>Arabic</string>
+   </property>
+  </action>
+  <action name="actionHindi">
+   <property name="text">
+    <string>Hindi</string>
+   </property>
+  </action>
+  <action name="actionKorean">
+   <property name="text">
+    <string>Korean</string>
+   </property>
+  </action>
+  <action name="actionItalian">
+   <property name="text">
+    <string>Italian</string>
+   </property>
+  </action>
+  <action name="actionTurkish">
+   <property name="text">
+    <string>Turkish</string>
+   </property>
+  </action>
+  <action name="actionDutch">
+   <property name="text">
+    <string>Dutch</string>
+   </property>
+  </action>
+  <action name="actionSwedish">
+   <property name="text">
+    <string>Swedish</string>
+   </property>
+  </action>
+  <action name="actionLogin_system">
+   <property name="text">
+    <string>Login system</string>
+   </property>
+  </action>
+  <action name="actionEnableLogin">
+   <property name="text">
+    <string>Enable</string>
+   </property>
+  </action>
+  <action name="actionDisableLogin">
+   <property name="text">
+    <string>Disable</string>
    </property>
   </action>
  </widget>

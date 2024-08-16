@@ -102,12 +102,19 @@ class MainWindow(QMainWindow):
 
     # Execute process
     def processCategory(self):
-        file_handling.moveFilesToCategories(categorized_files, path_processed, save_snapshot)
+        try:
+            file_handling.moveFilesToCategories(self.categorized_files, self.path_processed, self.save_snapshot)
         QMessageBox.information(
             None,
             QCoreApplication.translate("mainWindow", "Success"),
             QCoreApplication.translate("mainWindow", "Category complete.")
         )
+        except NameError and AttributeError: # Check if user doesn't choose a path
+            QMessageBox.critical(
+                None,
+                QCoreApplication.translate("MainWindow", "Error"),
+                QCoreApplication.translate("MainWindow", "Please select a valid path.")
+            )
 
 
     # Get the files in the pending path, add them to the list

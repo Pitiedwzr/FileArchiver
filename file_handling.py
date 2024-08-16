@@ -1,24 +1,27 @@
 import os
-import yaml
 import time
 import shutil
 from collections import defaultdict
+import yaml
 from PySide6.QtWidgets import QMessageBox
 from PySide6.QtCore import QCoreApplication
 
 
-# Use classes and objects to add attributes to the file
 class PendingFile:
+    """Use classes and objects to add attributes to the file"""
     def __init__(self, file_path):
         self.path = file_path
         self.name = os.path.basename(file_path)
         self.ext = os.path.splitext(self.name)[1].lower()
 
 
-# Go through a directory and create PendingFile objects for each file, return a list of PendingFile objects      
 def goThroughFiles(dir_path):
+    """
+    Go through a directory and create PendingFile objects for each file, 
+    Return a list of PendingFile objects
+    """
     files = []
-    for root, dirs, files_list in os.walk(dir_path):
+    for root, _, files_list in os.walk(dir_path):
         for file in files_list:
             full_path = os.path.join(root, file)
             # Add the current file as a pending file to the list
@@ -60,7 +63,7 @@ def readRulesFiles(directory):
 def loadMapping(yaml_file):
     yaml_path = "rules/" + yaml_file + ".yaml"
     try:
-        with open(yaml_path, 'r') as yamlfile:
+        with open(yaml_path, 'r', encoding="utf-8") as yamlfile:
             config = yaml.safe_load(yamlfile)
         return config.get('extension_mapping', {})
     except FileNotFoundError:
@@ -98,7 +101,7 @@ def generateSnapshot(files, category_path):
 
         # Load existing data or create an empty dict
         if os.path.exists(snapshot_file):
-            with open(snapshot_file, "r") as yamlfile:
+            with open(snapshot_file, "r", encoding="utf-8") as yamlfile:
                 existing_data = yaml.safe_load(yamlfile) or {}
         else:
             existing_data = {}
@@ -107,14 +110,14 @@ def generateSnapshot(files, category_path):
         existing_data.update(snapshot)
 
         # Write updated data to file
-        with open(snapshot_file, "w") as yamlfile:
+        with open(snapshot_file, "w", encoding="utf-8") as yamlfile:
             yaml.safe_dump(existing_data, yamlfile)
 
 
 # Load the snapshot, recover files from the processed path to their original locations
 def loadSnapshot(snapshot):
     try:
-        with open(snapshot, "r") as yamlfile:
+        with open(snapshot, "r", encoding="utf-8") as yamlfile:
             snapshot_data = yaml.safe_load(yamlfile)
 
         for file_name, paths in snapshot_data.items():
@@ -124,13 +127,13 @@ def loadSnapshot(snapshot):
             pending_path = paths.get("pending_path")
             processed_path = paths.get("processed_path")
 
-            if pending_path == None or processed_path == None: # Check if the file is not a snapshot file
+            if pending_path is None or processed_path is None: # Check if the file is not a snapshot file
                 QMessageBox.critical(
                     None,
                     QCoreApplication.translate("MainWindow", "Error"),
                     QCoreApplication.translate("MainWindow", f"File '{snapshot}' is not a snapshot file.")
                 )
-                break
+                return False
 
             if pending_path and processed_path and os.path.exists(processed_path):
                 # Ensure the directory of pending_path exists
@@ -138,8 +141,8 @@ def loadSnapshot(snapshot):
 
                 # Move the file back to its original location
                 shutil.move(processed_path, pending_path)
-                
-            return True
+
+        return True
     except FileNotFoundError:
         QMessageBox.critical(
             None,
@@ -174,6 +177,6 @@ def moveFilesToCategories(categorized_files, processed_path, save_snapshot):
         for file in files:
             destination = os.path.join(category_path, file.name)
             shutil.move(file.path, destination)
-            
+
         if save_snapshot:
             generateSnapshot(files, category_path)

@@ -41,10 +41,7 @@ def check(username, password):
 # Required: 6 character, 1 uppercase, 1 lowercase, 1 number
 def checkLegalPassword(password):
     regex = r"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,}$"
-    if re.search(regex, password):
-        return True
-    else:
-        return False
+    return re.search(regex, password)
 
 
 # Add the username and the password to database with encrypt

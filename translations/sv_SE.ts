@@ -1,40 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="en_GB">
+<TS version="2.1" language="sv_SE">
 <context>
     <name>Dialog</name>
     <message>
         <location filename="../UI_loginDialog.py" line="114"/>
         <source>Login</source>
-        <translation>Log In</translation>
+        <translation>Logga in</translation>
     </message>
     <message>
         <location filename="../UI_loginDialog.py" line="115"/>
         <source>Username</source>
-        <translation>Username</translation>
+        <translation>Användarnamn</translation>
     </message>
     <message>
         <location filename="../UI_loginDialog.py" line="116"/>
         <source>Password</source>
-        <translation>Password</translation>
+        <translation>Lösenord</translation>
     </message>
     <message>
         <location filename="../UI_loginDialog.py" line="117"/>
         <source>Sign Up</source>
-        <translation>Sign Up</translation>
+        <translation>Registrera dig</translation>
     </message>
     <message>
         <location filename="../UI_loginDialog.py" line="118"/>
         <source>Sign In</source>
-        <translation>Sign In</translation>
-    </message>
-    <message>
-        <source>Register</source>
-        <translation type="vanished">Register</translation>
-    </message>
-    <message>
-        <source>Skip</source>
-        <translation type="vanished">Skip</translation>
+        <translation>Logga in</translation>
     </message>
 </context>
 <context>
@@ -42,39 +34,28 @@
     <message>
         <location filename="../UI_mainWindow.py" line="171"/>
         <source>File Archiver</source>
-        <translation>File Archiver</translation>
+        <translation>Filarkivering</translation>
     </message>
     <message>
         <location filename="../UI_mainWindow.py" line="172"/>
         <source>File Archiver Help</source>
-        <translation>File Archiver Help</translation>
+        <translation>Hjälp med filarkivering</translation>
     </message>
     <message>
         <location filename="../UI_mainWindow.py" line="173"/>
         <source>About</source>
-        <translation>About</translation>
+        <translation>Om</translation>
     </message>
     <message>
         <location filename="../UI_mainWindow.py" line="174"/>
         <location filename="../UI_mainWindow.py" line="204"/>
         <source>Save snapshot</source>
-        <translation>Save Snapshot</translation>
+        <translation>Spara ögonblicksbild</translation>
     </message>
     <message>
         <location filename="../UI_mainWindow.py" line="175"/>
         <source>Load snapshot</source>
-        <translation>Load Snapshot</translation>
-    </message>
-    <message>
-        <location filename="../UI_mainWindow.py" line="207"/>
-        <source>Language</source>
-        <translation>Language</translation>
-    </message>
-    <message>
-        <location filename="../UI_mainWindow.py" line="197"/>
-        <location filename="../UI_mainWindow.py" line="199"/>
-        <source>...</source>
-        <translation>...</translation>
+        <translation>Ladda ögonblicksbild</translation>
     </message>
     <message>
         <location filename="../UI_mainWindow.py" line="176"/>
@@ -104,7 +85,7 @@
         <location filename="../UI_mainWindow.py" line="180"/>
         <location filename="../FileArchiver.py" line="109"/>
         <source>Traditional Chinese (Hongkong)</source>
-        <translation>繁體中文（香港)</translation>
+        <translation>繁體中文（台灣）</translation>
     </message>
     <message>
         <location filename="../UI_mainWindow.py" line="181"/>
@@ -182,17 +163,17 @@
         <location filename="../UI_mainWindow.py" line="193"/>
         <location filename="../UI_mainWindow.py" line="208"/>
         <source>Login system</source>
-        <translation>Log in system</translation>
+        <translation>Inloggningssystem</translation>
     </message>
     <message>
         <location filename="../UI_mainWindow.py" line="194"/>
         <source>Enable</source>
-        <translation>Enable</translation>
+        <translation>Aktivera</translation>
     </message>
     <message>
         <location filename="../UI_mainWindow.py" line="195"/>
         <source>Disable</source>
-        <translation>Disable</translation>
+        <translation>Avaktivera</translation>
     </message>
     <message>
         <location filename="../UI_mainWindow.py" line="196"/>
@@ -201,24 +182,30 @@
         <translation>Español</translation>
     </message>
     <message>
+        <location filename="../UI_mainWindow.py" line="197"/>
+        <location filename="../UI_mainWindow.py" line="199"/>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
         <location filename="../UI_mainWindow.py" line="198"/>
         <source>Pending Path</source>
-        <translation>Pending Path</translation>
+        <translation>Väntande sökväg</translation>
     </message>
     <message>
         <location filename="../UI_mainWindow.py" line="200"/>
         <source>Processed Path</source>
-        <translation>Processed Path</translation>
+        <translation>Bearbetad sökväg</translation>
     </message>
     <message>
         <location filename="../UI_mainWindow.py" line="201"/>
         <source>Pending Files</source>
-        <translation>Pending Files</translation>
+        <translation>Väntande filer</translation>
     </message>
     <message>
         <location filename="../UI_mainWindow.py" line="202"/>
         <source>Processed Files</source>
-        <translation>Processed Files</translation>
+        <translation>Bearbetade filer</translation>
     </message>
     <message>
         <location filename="../UI_mainWindow.py" line="203"/>
@@ -228,32 +215,33 @@
     <message>
         <location filename="../UI_mainWindow.py" line="205"/>
         <source>File</source>
-        <translation>File</translation>
-    </message>
-    <message>
-        <source>Help</source>
-        <translation type="vanished">Help</translation>
+        <translation>Fil</translation>
     </message>
     <message>
         <location filename="../UI_mainWindow.py" line="206"/>
         <source>Settings</source>
-        <translation>Settings</translation>
+        <translation>Inställningar</translation>
+    </message>
+    <message>
+        <location filename="../UI_mainWindow.py" line="207"/>
+        <source>Language</source>
+        <translation>Språk</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="47"/>
         <location filename="../FileArchiver.py" line="56"/>
         <source>Success</source>
-        <translation>Success</translation>
+        <translation>Framgång</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="49"/>
         <source>Login will display on next startup.</source>
-        <translation>Login will display on next startup.</translation>
+        <translation>Inloggning visas vid nästa uppstart.</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="58"/>
         <source>Login won&apos;t display on next startup.</source>
-        <translation>Login won&apos;t display on next startup.</translation>
+        <translation>Inloggningen visas inte vid nästa uppstart.</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="154"/>
@@ -264,38 +252,38 @@
         <location filename="../file_handling.py" line="154"/>
         <location filename="../file_handling.py" line="162"/>
         <source>Error</source>
-        <translation>Error</translation>
+        <translation>Fel</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="156"/>
         <source>Please select a valid path.</source>
-        <translation>Please select a valid path.</translation>
+        <translation>Vänligen välj en giltig sökväg.</translation>
     </message>
     <message>
         <location filename="../file_handling.py" line="71"/>
         <source>YAML file &apos;{yaml_path}&apos; not found.</source>
-        <translation>YAML file &apos;{yaml_path}&apos; not found.</translation>
+        <translation>YAML-filen &apos;{yaml_path}&apos; hittades inte.</translation>
     </message>
     <message>
         <location filename="../file_handling.py" line="78"/>
         <location filename="../file_handling.py" line="156"/>
         <source>Error parsing YAML file: {e}</source>
-        <translation>Error parsing YAML file: {e}</translation>
+        <translation>Fel vid analys av YAML-fil: {e}</translation>
     </message>
     <message>
         <location filename="../file_handling.py" line="132"/>
         <source>File &apos;{snapshot}&apos; is not a snapshot file.</source>
-        <translation>File &apos;{snapshot}&apos; is not a snapshot file.</translation>
+        <translation>Filen &apos;{snapshot}&apos; är inte en snapshot-fil.</translation>
     </message>
     <message>
         <location filename="../file_handling.py" line="148"/>
         <source>Snapshot file &apos;{snapshot}&apos; not found.</source>
-        <translation>Snapshot file &apos;{snapshot}&apos; not found.</translation>
+        <translation>Snapshot-filen &apos;{snapshot}&apos; hittades inte.</translation>
     </message>
     <message>
         <location filename="../file_handling.py" line="164"/>
         <source>Error processing files: {e}</source>
-        <translation>Error processing files: {e}</translation>
+        <translation>Fel vid bearbetning av filer: {e}</translation>
     </message>
 </context>
 <context>
@@ -308,11 +296,7 @@
     <message>
         <location filename="../FileArchiver.py" line="354"/>
         <source>Do you want to Register a account?</source>
-        <translation>Do you want to Register a account?</translation>
-    </message>
-    <message>
-        <source>Do you want to Register an account?</source>
-        <translation type="vanished">Do you want to Register an account?</translation>
+        <translation>Vill du registrera ett konto?</translation>
     </message>
 </context>
 <context>
@@ -321,25 +305,17 @@
         <location filename="../FileArchiver.py" line="295"/>
         <location filename="../FileArchiver.py" line="305"/>
         <source>Error</source>
-        <translation>Error</translation>
+        <translation>Fel</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="297"/>
         <source>Username or password can not be empty.</source>
-        <translation>Username or password can not be empty.</translation>
+        <translation>Användarnamn eller lösenord får inte vara tomt.</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="307"/>
         <source>Incorrect user name or password.</source>
-        <translation>Incorrect user name or password.</translation>
-    </message>
-    <message>
-        <source>Username or password cannot be empty.</source>
-        <translation type="vanished">Username or password cannot be empty.</translation>
-    </message>
-    <message>
-        <source>Incorrect username or password.</source>
-        <translation type="vanished">Incorrect username or password.</translation>
+        <translation>Felaktigt användarnamn eller lösenord.</translation>
     </message>
 </context>
 <context>
@@ -347,72 +323,64 @@
     <message>
         <location filename="../FileArchiver.py" line="64"/>
         <source>Open snapshot file</source>
-        <translation>Open Snapshot File</translation>
+        <translation>Öppna snapshot-fil</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="66"/>
         <source>Snapshot file (*.yaml)</source>
-        <translation>Snapshot File (*.yaml)</translation>
+        <translation>Fil för ögonblicksbild (*.yaml)</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="72"/>
         <source>Error</source>
-        <translation>Error</translation>
+        <translation>Fel</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="74"/>
         <source>You can only select one snapshot for loading.</source>
-        <translation>You can only select one snapshot for loading.</translation>
+        <translation>Du kan bara välja en snapshot för inläsning.</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="81"/>
         <source>Warning</source>
-        <translation>Warning</translation>
+        <translation>Varning</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="82"/>
         <source>Are you sure you want to load the snapshot {snapshot_name}? This will undo all changes in that process.</source>
-        <translation>Are you sure you want to load the snapshot {snapshot_name}? This will undo all changes in that process.</translation>
+        <translation>Är du säker på att du vill ladda ögonblicksbilden {snapshot_name}? Detta kommer att ångra alla ändringar i den processen.</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="90"/>
         <location filename="../FileArchiver.py" line="138"/>
         <location filename="../FileArchiver.py" line="148"/>
         <source>Success</source>
-        <translation>Success</translation>
+        <translation>Framgång</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="92"/>
         <source>The snapshot {snapshot_name} has been loaded, undo all changes.</source>
-        <translation>The snapshot {snapshot_name} has been loaded, undo all changes.</translation>
+        <translation>Snapshotet {snapshot_name} har laddats, ångra alla ändringar.</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="140"/>
         <source>Language will change to {lang_name} on next startup.</source>
-        <translation>Language will change to {lang_name} on next startup.</translation>
-    </message>
-    <message>
-        <source>Language will change to Chinese (China) on next startup.</source>
-        <translation type="vanished">Language will change to Chinese (China) on next startup.</translation>
-    </message>
-    <message>
-        <source>Language will change to English (United States) on next startup.</source>
-        <translation type="vanished">Language will change to English (United States) on next startup.</translation>
+        <translation>Språket kommer att ändras till {lang_name} vid nästa start.</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="150"/>
         <source>Category complete.</source>
-        <translation>Category complete.</translation>
+        <translation>Kategori komplett.</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="164"/>
         <source>Select the pending folder</source>
-        <translation>Select the pending folder</translation>
+        <translation>Välj den väntande mappen</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="185"/>
         <source>Select the processed folder</source>
-        <translation>Select the processed folder</translation>
+        <translation>Välj den bearbetade mappen</translation>
     </message>
 </context>
 <context>
@@ -420,67 +388,63 @@
     <message>
         <location filename="../UI_signUpDialog.py" line="145"/>
         <source>Register</source>
-        <translation>Register</translation>
+        <translation>Registrera</translation>
     </message>
     <message>
         <location filename="../UI_signUpDialog.py" line="146"/>
         <source>Sign Up</source>
-        <translation>Sign Up</translation>
+        <translation>Registrera dig</translation>
     </message>
     <message>
         <location filename="../UI_signUpDialog.py" line="147"/>
         <source>Username</source>
-        <translation>Username</translation>
+        <translation>Användarnamn</translation>
     </message>
     <message>
         <location filename="../UI_signUpDialog.py" line="148"/>
         <source>Password</source>
-        <translation>Password</translation>
+        <translation>Lösenord</translation>
     </message>
     <message>
         <location filename="../UI_signUpDialog.py" line="151"/>
         <source>- One number</source>
-        <translation>- One number</translation>
+        <translation>- Ett nummer</translation>
     </message>
     <message>
         <location filename="../UI_signUpDialog.py" line="152"/>
         <source>Skip</source>
-        <translation>Skip</translation>
+        <translation>Hoppa över</translation>
     </message>
     <message>
         <location filename="../UI_signUpDialog.py" line="153"/>
         <source>- Six characters</source>
-        <translation>- Six characters</translation>
+        <translation>- Sex tecken</translation>
     </message>
     <message>
         <location filename="../UI_signUpDialog.py" line="154"/>
         <source>- One lowercase letter</source>
-        <translation>- One lowercase letter</translation>
+        <translation>- En bokstav med liten bokstav</translation>
     </message>
     <message>
         <location filename="../UI_signUpDialog.py" line="155"/>
         <source>- One capital letter</source>
-        <translation>- One capital letter</translation>
+        <translation>- En stor bokstav</translation>
     </message>
     <message>
         <location filename="../UI_signUpDialog.py" line="156"/>
         <source>Password should contain at least:</source>
-        <translation>Password should contain at least:</translation>
+        <translation>Lösenordet ska innehålla minst:</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="233"/>
         <location filename="../FileArchiver.py" line="240"/>
         <source>Error</source>
-        <translation>Error</translation>
-    </message>
-    <message>
-        <source>Username or password cannot be empty.</source>
-        <translation type="vanished">Username or password cannot be empty.</translation>
+        <translation>Fel</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="235"/>
         <source>Username or password can not be empty.</source>
-        <translation>Username or password can not be empty.</translation>
+        <translation>Användarnamn eller lösenord får inte vara tomt.</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="242"/>
@@ -489,21 +453,21 @@
 - One capital letter
 - One lowercase letter
 - One number</source>
-        <translation>Password should contain at least
-- Six characters
-- One capital letter
-- One lowercase letter
-- One number</translation>
+        <translation>Lösenordet ska innehålla minst:
+- Sex tecken
+- En versal bokstav
+- En gemen bokstav
+- En siffra</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="248"/>
         <source>Success</source>
-        <translation>Success</translation>
+        <translation>Framgång</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="250"/>
         <source>Your account has been created.</source>
-        <translation>Your account has been created.</translation>
+        <translation>Ditt konto har skapats.</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="259"/>
@@ -513,7 +477,7 @@
     <message>
         <location filename="../FileArchiver.py" line="260"/>
         <source>Do you want to skip login and register from now on?</source>
-        <translation>Do you want to skip login and register from now on?</translation>
+        <translation>Vill du hoppa över inloggning och registrering från och med nu?</translation>
     </message>
 </context>
 </TS>

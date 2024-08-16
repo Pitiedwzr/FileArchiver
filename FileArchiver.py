@@ -104,8 +104,24 @@ class MainWindow(QMainWindow):
     # Initial a dictionary and tuple for language changing
     def setupLanguageActions(self):
         language_actions = {
-            "zh_CN": (self.ui.actionChinese_CN, QCoreApplication.translate("mainWindow", "Chinese (China)")),
-            "en_US": (self.ui.actionEnglish_US, QCoreApplication.translate("mainWindow", "English (America)"))
+            "zh_CN": (self.ui.actionChinese_CN, QCoreApplication.translate("MainWindow", "Simplified Chinese (China)")),
+            "zh_TW": (self.ui.actionChinese_TW, QCoreApplication.translate("MainWindow", "Traditional Chinese (Taiwan)")),
+            "zh_HK": (self.ui.actionChinese_HK, QCoreApplication.translate("MainWindow", "Traditional Chinese (Hongkong)")),
+            "en_US": (self.ui.actionEnglish_US, QCoreApplication.translate("MainWindow", "English (American)")),
+            "en_GB": (self.ui.actionEnglish_GB, QCoreApplication.translate("MainWindow", "English (Britain)")),
+            "es_ES": (self.ui.actionSpanish, QCoreApplication.translate("MainWindow", "Spanish")),
+            "fr_FR": (self.ui.actionFrench, QCoreApplication.translate("MainWindow", "French")),
+            "de_DE": (self.ui.actionGerman, QCoreApplication.translate("MainWindow", "German")),
+            "pr_BR": (self.ui.actionPortuguese, QCoreApplication.translate("MainWindow", "Portuguese")),
+            "ru_RU": (self.ui.actionRussian, QCoreApplication.translate("MainWindow", "Russian")),
+            "jp_JP": (self.ui.actionJapanese, QCoreApplication.translate("MainWindow", "Japanese")),
+            "ar_AE": (self.ui.actionArabic, QCoreApplication.translate("MainWindow", "Arabic")),
+            "hi_IN": (self.ui.actionHindi, QCoreApplication.translate("MainWindow", "Hindi")),
+            "ko_KR": (self.ui.actionKorean, QCoreApplication.translate("MainWindow", "Korean")),
+            "it_IT": (self.ui.actionItalian, QCoreApplication.translate("MainWindow", "Italian")),
+            "tr_TR": (self.ui.actionTurkish, QCoreApplication.translate("MainWindow", "Turkish")),
+            "nl_NL": (self.ui.actionDutch, QCoreApplication.translate("MainWindow", "Dutch")),
+            "sv_SE": (self.ui.actionSwedish, QCoreApplication.translate("MainWindow", "Swedish"))
         }
 
         for lang_code, (action, lang_name) in language_actions.items():

@@ -221,6 +221,7 @@
      <addaction name="actionTurkish"/>
      <addaction name="actionDutch"/>
      <addaction name="actionSwedish"/>
+     <addaction name="actionSpanish"/>
     </widget>
     <widget class="QMenu" name="menuLogin_system">
      <property name="title">
@@ -354,6 +355,11 @@
   <action name="actionDisableLogin">
    <property name="text">
     <string>Disable</string>
+   </property>
+  </action>
+  <action name="actionSpanish">
+   <property name="text">
+    <string>Spanish</string>
    </property>
   </action>
  </widget>

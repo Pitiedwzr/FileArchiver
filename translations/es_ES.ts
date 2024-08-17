@@ -1,40 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="en_GB">
+<TS version="2.1" language="es_ES">
 <context>
     <name>Dialog</name>
     <message>
         <location filename="../UI_loginDialog.py" line="114"/>
         <source>Login</source>
-        <translation>Log In</translation>
+        <translation>Iniciar sesión</translation>
     </message>
     <message>
         <location filename="../UI_loginDialog.py" line="115"/>
         <source>Username</source>
-        <translation>Username</translation>
+        <translation>Nombre de usuario</translation>
     </message>
     <message>
         <location filename="../UI_loginDialog.py" line="116"/>
         <source>Password</source>
-        <translation>Password</translation>
+        <translation>Contraseña</translation>
     </message>
     <message>
         <location filename="../UI_loginDialog.py" line="117"/>
         <source>Sign Up</source>
-        <translation>Sign Up</translation>
+        <translation>Registrarse</translation>
     </message>
     <message>
         <location filename="../UI_loginDialog.py" line="118"/>
         <source>Sign In</source>
-        <translation>Sign In</translation>
-    </message>
-    <message>
-        <source>Register</source>
-        <translation type="vanished">Register</translation>
-    </message>
-    <message>
-        <source>Skip</source>
-        <translation type="vanished">Skip</translation>
+        <translation>Iniciar sesión</translation>
     </message>
 </context>
 <context>
@@ -42,39 +34,28 @@
     <message>
         <location filename="../UI_mainWindow.py" line="171"/>
         <source>File Archiver</source>
-        <translation>File Archiver</translation>
+        <translation>Archivador de Ficheros</translation>
     </message>
     <message>
         <location filename="../UI_mainWindow.py" line="172"/>
         <source>File Archiver Help</source>
-        <translation>File Archiver Help</translation>
+        <translation>Ayuda de Archivador de Ficheros</translation>
     </message>
     <message>
         <location filename="../UI_mainWindow.py" line="173"/>
         <source>About</source>
-        <translation>About</translation>
+        <translation>Sobre</translation>
     </message>
     <message>
         <location filename="../UI_mainWindow.py" line="174"/>
         <location filename="../UI_mainWindow.py" line="204"/>
         <source>Save snapshot</source>
-        <translation>Save Snapshot</translation>
+        <translation>Guardar instantánea</translation>
     </message>
     <message>
         <location filename="../UI_mainWindow.py" line="175"/>
         <source>Load snapshot</source>
-        <translation>Load Snapshot</translation>
-    </message>
-    <message>
-        <location filename="../UI_mainWindow.py" line="207"/>
-        <source>Language</source>
-        <translation>Language</translation>
-    </message>
-    <message>
-        <location filename="../UI_mainWindow.py" line="197"/>
-        <location filename="../UI_mainWindow.py" line="199"/>
-        <source>...</source>
-        <translation>...</translation>
+        <translation>Cargar instantánea</translation>
     </message>
     <message>
         <location filename="../UI_mainWindow.py" line="176"/>
@@ -182,17 +163,17 @@
         <location filename="../UI_mainWindow.py" line="193"/>
         <location filename="../UI_mainWindow.py" line="208"/>
         <source>Login system</source>
-        <translation>Log in system</translation>
+        <translation>Sistema de inicio de sesión</translation>
     </message>
     <message>
         <location filename="../UI_mainWindow.py" line="194"/>
         <source>Enable</source>
-        <translation>Enable</translation>
+        <translation>Activar</translation>
     </message>
     <message>
         <location filename="../UI_mainWindow.py" line="195"/>
         <source>Disable</source>
-        <translation>Disable</translation>
+        <translation>Desactivar</translation>
     </message>
     <message>
         <location filename="../UI_mainWindow.py" line="196"/>
@@ -201,59 +182,66 @@
         <translation>Español</translation>
     </message>
     <message>
+        <location filename="../UI_mainWindow.py" line="197"/>
+        <location filename="../UI_mainWindow.py" line="199"/>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
         <location filename="../UI_mainWindow.py" line="198"/>
         <source>Pending Path</source>
-        <translation>Pending Path</translation>
+        <translation>Ruta Pendiente</translation>
     </message>
     <message>
         <location filename="../UI_mainWindow.py" line="200"/>
         <source>Processed Path</source>
-        <translation>Processed Path</translation>
+        <translation>Ruta Procesada</translation>
     </message>
     <message>
         <location filename="../UI_mainWindow.py" line="201"/>
         <source>Pending Files</source>
-        <translation>Pending Files</translation>
+        <translation>Ficheros pendientes</translation>
     </message>
     <message>
         <location filename="../UI_mainWindow.py" line="202"/>
         <source>Processed Files</source>
-        <translation>Processed Files</translation>
+        <translation>Ficheros procesados</translation>
     </message>
     <message>
         <location filename="../UI_mainWindow.py" line="203"/>
         <source>Process</source>
-        <translation>Process</translation>
+        <translation>Proceso</translation>
     </message>
     <message>
         <location filename="../UI_mainWindow.py" line="205"/>
         <source>File</source>
-        <translation>File</translation>
-    </message>
-    <message>
-        <source>Help</source>
-        <translation type="vanished">Help</translation>
+        <translation>Fichero</translation>
     </message>
     <message>
         <location filename="../UI_mainWindow.py" line="206"/>
         <source>Settings</source>
-        <translation>Settings</translation>
+        <translation>Parámetros</translation>
+    </message>
+    <message>
+        <location filename="../UI_mainWindow.py" line="207"/>
+        <source>Language</source>
+        <translation>Idioma</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="47"/>
         <location filename="../FileArchiver.py" line="56"/>
         <source>Success</source>
-        <translation>Success</translation>
+        <translation>Éxito</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="49"/>
         <source>Login will display on next startup.</source>
-        <translation>Login will display on next startup.</translation>
+        <translation>El inicio de sesión se mostrará en el siguiente arranque.</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="58"/>
         <source>Login won&apos;t display on next startup.</source>
-        <translation>Login won&apos;t display on next startup.</translation>
+        <translation>El inicio de sesión no se mostrará en el siguiente arranque.</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="154"/>
@@ -269,33 +257,33 @@
     <message>
         <location filename="../FileArchiver.py" line="156"/>
         <source>Please select a valid path.</source>
-        <translation>Please select a valid path.</translation>
+        <translation>Por favor, seleccione una ruta válida.</translation>
     </message>
     <message>
         <location filename="../file_handling.py" line="71"/>
         <source>YAML file &apos;{yaml_path}&apos; not found.</source>
-        <translation>YAML file &apos;{yaml_path}&apos; not found.</translation>
+        <translation>Fichero YAML &apos;{yaml_path}&apos; no encontrado.</translation>
     </message>
     <message>
         <location filename="../file_handling.py" line="78"/>
         <location filename="../file_handling.py" line="156"/>
         <source>Error parsing YAML file: {e}</source>
-        <translation>Error parsing YAML file: {e}</translation>
+        <translation>Error al analizar el fichero YAML: {e}</translation>
     </message>
     <message>
         <location filename="../file_handling.py" line="132"/>
         <source>File &apos;{snapshot}&apos; is not a snapshot file.</source>
-        <translation>File &apos;{snapshot}&apos; is not a snapshot file.</translation>
+        <translation>El fichero &apos;{snapshot}&apos; no es un fichero snapshot.</translation>
     </message>
     <message>
         <location filename="../file_handling.py" line="148"/>
         <source>Snapshot file &apos;{snapshot}&apos; not found.</source>
-        <translation>Snapshot file &apos;{snapshot}&apos; not found.</translation>
+        <translation>Fichero de instantánea &apos;{snapshot}&apos; no encontrado.</translation>
     </message>
     <message>
         <location filename="../file_handling.py" line="164"/>
         <source>Error processing files: {e}</source>
-        <translation>Error processing files: {e}</translation>
+        <translation>Error procesando ficheros: {e}</translation>
     </message>
 </context>
 <context>
@@ -308,11 +296,7 @@
     <message>
         <location filename="../FileArchiver.py" line="354"/>
         <source>Do you want to Register a account?</source>
-        <translation>Do you want to Register a account?</translation>
-    </message>
-    <message>
-        <source>Do you want to Register an account?</source>
-        <translation type="vanished">Do you want to Register an account?</translation>
+        <translation>¿Desea registrar una cuenta?</translation>
     </message>
 </context>
 <context>
@@ -326,20 +310,12 @@
     <message>
         <location filename="../FileArchiver.py" line="297"/>
         <source>Username or password can not be empty.</source>
-        <translation>Username or password can not be empty.</translation>
+        <translation>El nombre de usuario o la contraseña no pueden estar vacíos.</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="307"/>
         <source>Incorrect user name or password.</source>
-        <translation>Incorrect user name or password.</translation>
-    </message>
-    <message>
-        <source>Username or password cannot be empty.</source>
-        <translation type="vanished">Username or password cannot be empty.</translation>
-    </message>
-    <message>
-        <source>Incorrect username or password.</source>
-        <translation type="vanished">Incorrect username or password.</translation>
+        <translation>Nombre de usuario o contraseña incorrectos.</translation>
     </message>
 </context>
 <context>
@@ -347,12 +323,12 @@
     <message>
         <location filename="../FileArchiver.py" line="64"/>
         <source>Open snapshot file</source>
-        <translation>Open Snapshot File</translation>
+        <translation>Abrir fichero de instantáneas</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="66"/>
         <source>Snapshot file (*.yaml)</source>
-        <translation>Snapshot File (*.yaml)</translation>
+        <translation>Fichero de instantáneas (*.yaml)</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="72"/>
@@ -362,57 +338,49 @@
     <message>
         <location filename="../FileArchiver.py" line="74"/>
         <source>You can only select one snapshot for loading.</source>
-        <translation>You can only select one snapshot for loading.</translation>
+        <translation>Sólo puede seleccionar una instantánea para cargar.</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="81"/>
         <source>Warning</source>
-        <translation>Warning</translation>
+        <translation>Advertencia</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="82"/>
         <source>Are you sure you want to load the snapshot {snapshot_name}? This will undo all changes in that process.</source>
-        <translation>Are you sure you want to load the snapshot {snapshot_name}? This will undo all changes in that process.</translation>
+        <translation>¿Estás seguro de que quieres cargar la instantánea {snapshot_name}? Esto deshará todos los cambios en ese proceso.</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="90"/>
         <location filename="../FileArchiver.py" line="138"/>
         <location filename="../FileArchiver.py" line="148"/>
         <source>Success</source>
-        <translation>Success</translation>
+        <translation>Éxito</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="92"/>
         <source>The snapshot {snapshot_name} has been loaded, undo all changes.</source>
-        <translation>The snapshot {snapshot_name} has been loaded, undo all changes.</translation>
+        <translation>La instantánea {snapshot_name} ha sido cargada, deshaga todos los cambios.</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="140"/>
         <source>Language will change to {lang_name} on next startup.</source>
-        <translation>Language will change to {lang_name} on next startup.</translation>
-    </message>
-    <message>
-        <source>Language will change to Chinese (China) on next startup.</source>
-        <translation type="vanished">Language will change to Chinese (China) on next startup.</translation>
-    </message>
-    <message>
-        <source>Language will change to English (United States) on next startup.</source>
-        <translation type="vanished">Language will change to English (United States) on next startup.</translation>
+        <translation>El idioma cambiará a {lang_name} en el próximo arranque.</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="150"/>
         <source>Category complete.</source>
-        <translation>Category complete.</translation>
+        <translation>Categoría completa.</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="164"/>
         <source>Select the pending folder</source>
-        <translation>Select the pending folder</translation>
+        <translation>Seleccione la carpeta pendiente</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="185"/>
         <source>Select the processed folder</source>
-        <translation>Select the processed folder</translation>
+        <translation>Seleccione la carpeta procesada</translation>
     </message>
 </context>
 <context>
@@ -420,52 +388,52 @@
     <message>
         <location filename="../UI_signUpDialog.py" line="145"/>
         <source>Register</source>
-        <translation>Register</translation>
+        <translation>Regístrese</translation>
     </message>
     <message>
         <location filename="../UI_signUpDialog.py" line="146"/>
         <source>Sign Up</source>
-        <translation>Sign Up</translation>
+        <translation>Registrarse</translation>
     </message>
     <message>
         <location filename="../UI_signUpDialog.py" line="147"/>
         <source>Username</source>
-        <translation>Username</translation>
+        <translation>Nombre de usuario</translation>
     </message>
     <message>
         <location filename="../UI_signUpDialog.py" line="148"/>
         <source>Password</source>
-        <translation>Password</translation>
+        <translation>Contraseña</translation>
     </message>
     <message>
         <location filename="../UI_signUpDialog.py" line="151"/>
         <source>- One number</source>
-        <translation>- One number</translation>
+        <translation>- Un número</translation>
     </message>
     <message>
         <location filename="../UI_signUpDialog.py" line="152"/>
         <source>Skip</source>
-        <translation>Skip</translation>
+        <translation>Saltar</translation>
     </message>
     <message>
         <location filename="../UI_signUpDialog.py" line="153"/>
         <source>- Six characters</source>
-        <translation>- Six characters</translation>
+        <translation>- Seis caracteres</translation>
     </message>
     <message>
         <location filename="../UI_signUpDialog.py" line="154"/>
         <source>- One lowercase letter</source>
-        <translation>- One lowercase letter</translation>
+        <translation>- Una letra minúscula</translation>
     </message>
     <message>
         <location filename="../UI_signUpDialog.py" line="155"/>
         <source>- One capital letter</source>
-        <translation>- One capital letter</translation>
+        <translation>- Una mayúscula</translation>
     </message>
     <message>
         <location filename="../UI_signUpDialog.py" line="156"/>
         <source>Password should contain at least:</source>
-        <translation>Password should contain at least:</translation>
+        <translation>La contraseña debe contener al menos:</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="233"/>
@@ -474,13 +442,9 @@
         <translation>Error</translation>
     </message>
     <message>
-        <source>Username or password cannot be empty.</source>
-        <translation type="vanished">Username or password cannot be empty.</translation>
-    </message>
-    <message>
         <location filename="../FileArchiver.py" line="235"/>
         <source>Username or password can not be empty.</source>
-        <translation>Username or password can not be empty.</translation>
+        <translation>El nombre de usuario o la contraseña no pueden estar vacíos.</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="242"/>
@@ -489,21 +453,21 @@
 - One capital letter
 - One lowercase letter
 - One number</source>
-        <translation>Password should contain at least
-- Six characters
-- One capital letter
-- One lowercase letter
-- One number</translation>
+        <translation>La contraseña debe contener al menos:
+- Seis caracteres
+- Una letra mayúscula
+- Una letra minúscula
+- Un número</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="248"/>
         <source>Success</source>
-        <translation>Success</translation>
+        <translation>Éxito</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="250"/>
         <source>Your account has been created.</source>
-        <translation>Your account has been created.</translation>
+        <translation>Su cuenta ha sido creada.</translation>
     </message>
     <message>
         <location filename="../FileArchiver.py" line="259"/>
@@ -513,7 +477,7 @@
     <message>
         <location filename="../FileArchiver.py" line="260"/>
         <source>Do you want to skip login and register from now on?</source>
-        <translation>Do you want to skip login and register from now on?</translation>
+        <translation>¿Desea omitir el inicio de sesión y el registro a partir de ahora?</translation>
     </message>
 </context>
 </TS>

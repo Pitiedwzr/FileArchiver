@@ -35,7 +35,27 @@ class MainWindow(QMainWindow):
         self.setupLanguageActions()
         self.ui.actionLoad_snapshot.triggered.connect(self.loadSnapshot)
         self.ui.snapshotCheckBox.stateChanged.connect(self.sscbStateChanged)
+        self.ui.actionEnableLogin.triggered.connect(self.enableLogin)
+        self.ui.actionDisableLogin.triggered.connect(self.disableLogin)
 
+
+    def enableLogin(self):
+        config.common.skipSignIn = True
+        config.save()
+        QMessageBox.information(
+            None,
+            QCoreApplication.translate("MainWindow", "Success"),
+            QCoreApplication.translate("MainWindow", f"Login will display on next startup.")
+        )
+
+    def disableLogin(self):
+        config.common.skipSignIn = False
+        config.save()
+        QMessageBox.information(
+            None,
+            QCoreApplication.translate("MainWindow", "Success"),
+            QCoreApplication.translate("MainWindow", f"Login won't display on next startup.")
+        )
 
     # Get the snapshot file from user input and pass it to the function
     def loadSnapshot(self):

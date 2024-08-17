@@ -196,14 +196,6 @@
     </property>
     <addaction name="actionLoad_snapshot"/>
    </widget>
-   <widget class="QMenu" name="menuHelp">
-    <property name="title">
-     <string>Help</string>
-    </property>
-    <addaction name="actionFile_Archiver_Help"/>
-    <addaction name="separator"/>
-    <addaction name="actionAbout"/>
-   </widget>
    <widget class="QMenu" name="menuSettings">
     <property name="title">
      <string>Settings</string>
@@ -229,6 +221,7 @@
      <addaction name="actionTurkish"/>
      <addaction name="actionDutch"/>
      <addaction name="actionSwedish"/>
+     <addaction name="actionSpanish"/>
     </widget>
     <widget class="QMenu" name="menuLogin_system">
      <property name="title">
@@ -242,7 +235,6 @@
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuSettings"/>
-   <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionFile_Archiver_Help">
@@ -363,6 +355,11 @@
   <action name="actionDisableLogin">
    <property name="text">
     <string>Disable</string>
+   </property>
+  </action>
+  <action name="actionSpanish">
+   <property name="text">
+    <string>Spanish</string>
    </property>
   </action>
  </widget>

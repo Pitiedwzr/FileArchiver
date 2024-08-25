@@ -1,0 +1,12 @@
+extension_mapping:
+    After Effects Project:
+        - .aep
+    Audition Project:
+        - .sesx
+    Premiere Pro Project:
+        - .prproj
+    Photoshop Document:
+        - .psd
+    Illustrator Document:
+        - .ai
+    Others: []

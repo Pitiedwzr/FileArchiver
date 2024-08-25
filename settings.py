@@ -1,23 +1,29 @@
 import yaml
 
 
-# Represents common configuration settings.
-# Provides attribute-like access to configuration items.
 class CommonConfig:
-    # Set to the data that get from the raw data
+    """
+    Represents common configuration settings.
+    Provides attribute-like access to configuration items.
+    """
     def __init__(self, raw):
+        """Set to the data that get from the raw data"""
         self.settings = raw
 
-    # Allow attribute-like access to configuration items
-    # item is the configuration item to access
-    # return the value of the configuration item
     def __getattr__(self, item):
+        """
+        Allow attribute-like access to configuration items
+        item is the configuration item to access
+        return the value of the configuration item
+        """
         return self.settings.get(item)
-
-    # Allow attribute-like setting of configuration items.
-    # key is the configuration item to set
-    # value is the value to save to the configuration item
+    
     def __setattr__(self, key, value):
+        """
+        Allow attribute-like setting of configuration items.
+        key is the configuration item to set
+        value is the value to save to the configuration item
+        """
         if key == 'settings':
             super().__setattr__(key, value)
         else:
@@ -34,10 +40,10 @@ class Config:
         data = {
             'Common': self.common.settings
         }
-        with open("settings.yaml", 'w') as f:
-            yaml.safe_dump(data, f)
+        with open("settings.yaml", 'w', encoding="utf-8") as yaml_data:
+            yaml.safe_dump(data, yaml_data)
 
 
 # Load the configuration
-with open("settings.yaml", "r") as f:
-    config = Config(yaml.safe_load(f))
+with open("settings.yaml", "r", encoding="utf-8") as setting_data:
+    config = Config(yaml.safe_load(setting_data))

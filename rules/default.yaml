@@ -14,4 +14,9 @@ extension_mapping:
     Spreadsheet:
         - .xls
         - .xlsx
+    Video:
+        - .mkv
+        - .mp4
+        - .mov
+        - .flv        
     Others: []

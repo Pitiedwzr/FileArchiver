@@ -369,3 +369,4 @@ misc/
 /update_translation.bat
 /update_ui.bat
 *.mkv
+/snapshots/2024_08_25_23_30.yaml
